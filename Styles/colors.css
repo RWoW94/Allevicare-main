@@ -18,7 +18,7 @@
 
     --hue--5: var(--color); /* dark bg-area */
     --sat--5: 22%; /* dark bg-area */
-    --lum--5: 65%; /* dark bg-area */
+    --lum--5: 35%; /* dark bg-area */
     
    /* Red */
    --color: 6;

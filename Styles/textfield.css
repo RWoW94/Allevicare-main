@@ -1,0 +1,17 @@
+.textfield{    color: hsl(var(--hue--2), var(--sat--2), var(--lum--2));
+    border: 0.1rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
+    border-radius: 0.3rem;
+    background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));  
+    align-content: center;
+    text-align: left;
+    width: 100%;
+    height: 2rem;
+}
+.register-text {
+    color: hsl(var(--hue--5), var(--sat--5), var(--lum--5));
+    font-size: 0.9rem;
+    font-weight: bold;
+    align-items: center;
+    text-align: center;
+    
+}

@@ -9,25 +9,55 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }
-  
+
+.mgtop{
+  margin-block-start: auto;
+}
+
+
 .box-1{
   grid-column: 1;
   grid-row: 1;
 }
 
 .box-2{
-    grid-column: 3;
+    grid-column: 2;
     grid-row: 1;
 }
 .box-3{
-    grid-column: 2;
-    grid-row: 2;
+    grid-column: 3;
+    grid-row: 1;
 }
 .box-4{
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 2;
 }
 .box-5{
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.box-6{
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.box-7{
+    grid-column: 1;
+    grid-row: 3;
+}
+
+.box-8{
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.box-9{
     grid-column: 3;
     grid-row: 3;
+}
+
+.box_span1-3{
+    grid-column: 1 / span 3;
+    grid-row: 1;
 }
