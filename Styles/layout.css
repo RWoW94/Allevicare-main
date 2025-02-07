@@ -1,0 +1,22 @@
+body {
+background: linear-gradient(to bottom, hsl(var(--hue--4), var(--sat--4), var(--lum--4)) 70%, hsl(var(--hue--5), var(--sat--5), var(--lum--5)));
+}
+
+.flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: space-between;
+    margin-block-start: 3rem;
+}
+
+h1 {
+font-size: 4.5rem;
+font-family: fantasy;
+color: hsl(var(--hue--2), var(--sat--2), var(--lum--2));
+}
+
+footer {
+    width: 70%;
+}
