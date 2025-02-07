@@ -1,13 +1,12 @@
 .container{
-  aspect-ratio: 1/1;
-  width: 70%;
+  width: 70vw;
 }
 
 .grid--example {
   display: grid;
   height: 100%;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+grid-template-columns: repeat(3, calc(70vw / 3));
+grid-template-rows: repeat(5, calc(70vw / 3));
 }
 
 .mgtop{
@@ -57,7 +56,42 @@
     grid-row: 3;
 }
 
+.box-10{
+    grid-column: 1;
+    grid-row: 4;
+}
+
+.box-11{
+    grid-column: 2;
+    grid-row: 4;
+}
+
+.box-12{
+    grid-column: 3;
+    grid-row: 4;
+}
+
+.box-13{
+    grid-column: 1;
+    grid-row: 5;
+}
+
+.box-14{
+    grid-column: 2;
+    grid-row: 5;
+}
+
+.box-15{
+    grid-column: 3;
+    grid-row: 5;
+}
+
 .box_span1-3{
     grid-column: 1 / span 3;
     grid-row: 1;
+}
+
+.boxspan_full{
+    grid-column: 1 / span 3;
+    grid-row: 1 / span 5;
 }

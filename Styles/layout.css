@@ -4,7 +4,6 @@ background: linear-gradient(to bottom, hsl(var(--hue--4), var(--sat--4), var(--l
 
 .flex{
     display: flex;
-    flex-direction: column;
     align-items: center;
     height: 100vh;
     justify-content: space-between;
@@ -13,9 +12,12 @@ background: linear-gradient(to bottom, hsl(var(--hue--4), var(--sat--4), var(--l
 
 .flex2{
     display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+}
+
+.flex_col{
+    flex-direction: column;
 }
 
 h1 {

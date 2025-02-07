@@ -1,0 +1,13 @@
+.circle{
+    border-radius: 50%;
+}
+
+.border{
+    border: 0.3rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
+}
+
+.b_shadow{
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+

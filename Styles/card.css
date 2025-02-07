@@ -1,5 +1,8 @@
 .card{
-    position: absolute;
-    background-color: red;
-    
+    color: hsl(var(--hue--2), var(--sat--2), var(--lum--2));
+    border: 0.3rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
+    border-radius: 1rem;
+    background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));
+    z-index: 1;
 }
+

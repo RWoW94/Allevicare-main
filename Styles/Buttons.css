@@ -1,12 +1,13 @@
 .button {
     color: hsl(var(--hue--2), var(--sat--2), var(--lum--2));
-    border: 0.7rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
+    border: 0.5rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
     border-radius: 1rem;
     background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));  
     font-size: 5rem;
     align-content: center;
     text-align: center;
     transition: transform 0.2s;
+
 }
 .button1 {
     color: hsl(var(--hue--2), var(--sat--2), var(--lum--2));
@@ -20,22 +21,19 @@
 
 .button:active {
     transform: scale(0.9);
-}
-
-.circle{
-    border-radius: 50%;
+    box-shadow: none;
 }
 
 .button-zoom{
     scale: 1.4;
 }
 
-.square{ 
+.btn_bg{ 
     position: relative;
     background-color: hsl(var(--hue--3), var(--sat--3), var(--lum--3));
 }
 
-.square::before{
+.btn_bg::before{
     content: "";
     position: absolute;
     top: 0;
@@ -43,6 +41,7 @@
     width: 100%;
     height: 100%;
     background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));
+    border-radius: 0.5rem;
     z-index: -1;
 }
 
