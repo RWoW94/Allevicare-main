@@ -2,7 +2,39 @@
     color: hsl(var(--hue--2), var(--sat--2), var(--lum--2));
     border: 0.3rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
     border-radius: 1rem;
-    background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));
+    background: linear-gradient(to bottom, hsl(var(--hue--2), var(--sat--2), var(--lum--4)) 80%, hsl(var(--hue--2), var(--sat--1), var(--lum--2)));
+    box-shadow: 0.7rem 0.5rem 0.5rem hsl(var(--hue--1), var(--sat--1), var(--lum--5));
     z-index: 1;
 }
 
+
+
+.card_flex{
+    display: flex;
+    /* align-items: center; */
+    gap: 1rem;
+}
+
+.card_gap{
+    gap: 8rem;
+}
+
+.card_flex_col{
+    flex-direction: column;
+    width: 100%;
+}
+
+.card_mg_block{
+    margin-block: 1rem;
+}
+
+.card_mg_inline{
+    margin-inline: 1rem;
+}
+
+.card_grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+}
