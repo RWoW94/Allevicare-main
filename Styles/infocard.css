@@ -1,0 +1,72 @@
+.info_body {
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    background: fixed hsl(var(--hue--4), var(--sat--4), var(--lum--4));
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.info_header {
+    background: fixed hsl(var(--hue--4), var(--sat--4), var(--lum--4));
+    padding: 1rem;
+    text-align: center;
+}
+
+.info_h1 {
+    font-size: 4rem;  /* Default font size for h1 */
+    margin: 0;
+    padding: 0.5rem;
+
+}
+
+.info_container {
+    padding: 2rem;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.info_footer {
+    text-align: center;
+    padding: 1rem;
+    width: auto;
+    bottom: 0;
+    background: fixed hsl(var(--hue--4), var(--sat--4), var(--lum--4));
+}
+
+.info_button {
+    border: 0.3rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
+    border-radius: 1rem;
+    margin-inline-start: 1rem;
+    margin-inline-end: 0.5rem;
+    font-size: 5rem;
+    align-content: center;
+    text-align: center;
+}
+
+/* Media Query for 390x844 screen size */
+@media (max-width: 390px) and (max-height: 844px) {
+    .info_header {
+        padding: 0.8rem;
+    }
+
+    .info_h1 {
+        font-size: 1.3rem;  /* Adjusted font size for smaller screens */
+        padding: 0.3rem;
+        margin: 0;
+
+    }
+
+    .info_container {
+        padding: 1.2rem;  /* Reduced padding for smaller screens */
+    }
+
+    .info_footer {
+        padding: 0.8rem;  /* Adjusted footer padding */
+    }
+
+    .info_button {
+        padding: 0.75rem;
+        font-size: 0.9rem;  /* Adjusted font size for button */
+    }
+}

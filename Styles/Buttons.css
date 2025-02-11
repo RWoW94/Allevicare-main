@@ -6,8 +6,7 @@
     font-size: 5rem;
     align-content: center;
     text-align: center;
-    transition: transform 0.2s;
-
+    
 }
 
 .button1 {
@@ -16,12 +15,15 @@
     border-radius: 0.2rem;
     background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));
     width: 100%;
-    transition: transform 0.2s;
     font-size: 1rem;
 }
 
-.button:active {
-    transform: scale(0.9);
+.btn_click{
+    transition: transform 0.1s;
+}
+
+.btn_click:active {
+    transform: scale(0.99);
     box-shadow: none;
 }
 
@@ -32,6 +34,24 @@
 .btn_bg{ 
     position: relative;
     background-color: hsl(var(--hue--3), var(--sat--3), var(--lum--3));
+}
+
+.warning_btn{
+    color: hsl(var(--hue--2), var(--sat--2), var(--lum--2));
+    border: 0.2rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
+    border-radius: 0.5rem;
+    background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));
+    width: 100%;
+    font-size: 2rem;
+}
+
+.question_button{
+    color: hsl(var(--hue--2), var(--sat--2), var(--lum--2));
+    border: 0.2rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
+    border-radius: 0.5rem;
+    background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));
+    width: 10%;
+    font-size: 2rem;
 }
 
 .btn_bg::before{

@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="../Styles/card.css" />
     <link rel="stylesheet" href="../Styles/styling.css" />
     <link rel="stylesheet" href="../Styles/textfield.css" />
+    <link rel="stylesheet" href="../Styles/infocard.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
   </head>
   <body class="flex flex_col">
     <header>
@@ -19,14 +21,15 @@
     </header>
     <section class="container">
       <div class="grid--example">
-        <div class="box-4 button btn_bg bottom-right-curve"><i class="bi bi-person-square"></i></div>
-        <div class="box-6 button btn_bg bottom-left-curve"><i class="bi bi-question-square"></i></div>
-        <div class="box-8 button circle button-zoom b_shadow"><i class="bi bi-camera-fill"></i></div>
-        <div class="box-10 button btn_bg top-right-curve "><i class="bi bi-exclamation-triangle"></i></div>
-        <div class="box-12 button btn_bg top-left-curve"><i class="bi bi-gear"></i></div>
+        <div class="profile__button box-4 button btn_bg bottom-right-curve btn_click"><i class="bi bi-person-square"></i></div>
+        <div class="info_button box-6 button btn_bg bottom-left-curve btn_click"><i class="bi bi-question-square"></i></div>
+        <div class="box-8 button circle button-zoom b_shadow btn_click"><i class="bi bi-camera-fill"></i></div>
+        <div class="warning_button box-10 button btn_bg top-right-curve btn_click"><i class="bi bi-exclamation-triangle"></i></div>
+        <div class="setting__button box-12 button btn_bg top-left-curve btn_click"><i class="bi bi-gear"></i></div>
         
         <!------------------- Card Section -------------------------->
-        <div class="boxspan_full card card_flex">
+        
+<!--         <div class="boxspan_full card card_flex">
           <div class="card_mg_inline card_mg_block"> 
             <div class="card_flex">
               <img class="circle border" src="/img/profile/old_man_1.jpg" alt="" width="35%" height="35%">
@@ -70,8 +73,7 @@
               <p>Namn: Johan Hud <br> Relation: Vän <br> Telefon: 073-432 10 98</p>
               </div>            
           </div>
-            
-            
+          
           <script>
             function editProfile() {
               const card = document.querySelector('.boxspan_full.card');
@@ -86,10 +88,20 @@
               });
             }
           </script>
-          </script>
-        </div>       
+        </div> -->
+              
       </div>
     </section>
-    <footer><div class="button b_shadow"><i class="bi bi-house"></i></div></footer>
+    <footer><div class="home__button button b_shadow btn_click"><i class="bi bi-house"></i></div>
+      <p>&copy; 2024 Allevicare. All rights reserved.</p>
+    </footer>
   </body>
+  <script src="/Script/homebtn.js"></script>
+  <script src="/Script/warningbtn.js"></script>
+  <script src="/Script/infobtn.js"></script>
+  <script src="/Script/profilebtn.js"></script>
+  <script src="/Script/settingbtn.js"></script>
+  <script src="/Script/theme.js"></script>
+  <script src="/Script/camerabtn.js"></script>
+  <script src="/Script/takes_you_back.js"></script>
 </html>
