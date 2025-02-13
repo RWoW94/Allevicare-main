@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const email = "hejsan@cmail.gh";
 
         const informationCard = `
-            <div class="boxspan_full card card_flex">
+            <div class="boxspan_1-5_row card card_flex">
                 <div class="card_mg_inline card_mg_block"> 
                     <h2>Information</h2>
                     <div class="card_flex card_flex_col">
@@ -34,6 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         `;
         
-        container.innerHTML = informationCard;
+        container.insertAdjacentHTML('beforeend', informationCard);
     });
 });

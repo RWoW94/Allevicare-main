@@ -1,0 +1,7 @@
+:root{
+    /* Adjusts the apps general font-size */
+    --font_size_1rem: 1rem;
+
+    /* Adjusts width of middle section */
+    --view_width_80: 80vw;
+}

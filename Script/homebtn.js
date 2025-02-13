@@ -1,4 +1,4 @@
-/* document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     // Hämta alla knappar med klassen 'button'
     const buttons = document.querySelectorAll(".button");
 
@@ -12,8 +12,8 @@
 
             // Kontrollera att det finns minst 6 element
             if (divs.length > 5) {
-                container.removeChild(divs[5]); // Ta bort det sjätte elementet
+                container.removeChild(divs[6]); // Ta bort det sjätte elementet
             }
         });
     });
-}); */
+});

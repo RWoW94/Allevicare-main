@@ -9,7 +9,7 @@
 
 .card_button{
     color: hsl(var(--hue--1), var(--sat--2), var(--lum--2));
-    font-size: 4rem;
+    font-size:calc(var(--font_size_1rem) * 4);
     align-content: center;
     text-align: center;
     transition: transform 0.2s; 
@@ -35,11 +35,11 @@
 }
 
 .card_mg_block{
-    margin-block: 2rem;
+    margin-block: 1rem;
 }
 
 .card_mg_inline{
-    margin-inline: 1rem;
+    margin-inline: 0.5rem;
 }
 
 .card_grid{

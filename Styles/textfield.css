@@ -10,7 +10,7 @@
 }
 .register-text {
     color: hsl(var(--hue--5), var(--sat--5), var(--lum--5));
-    font-size: 0.9rem;
+    font-size: calc(var(--font_size_1rem) * 0.9);
     font-weight: bold;
     align-items: center;
     text-align: center;
