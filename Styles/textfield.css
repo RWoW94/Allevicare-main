@@ -1,4 +1,5 @@
-.textfield{    color: hsl(var(--hue--2), var(--sat--2), var(--lum--2));
+.textfield{ 
+    color: hsl(var(--hue--2), var(--sat--2), var(--lum--2));
     border: 0.1rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
     border-radius: 0.3rem;
     background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));  
@@ -10,7 +11,7 @@
 }
 .register-text {
     color: hsl(var(--hue--5), var(--sat--5), var(--lum--5));
-    font-size: calc(var(--font_size_1rem) * 0.9);
+    font-size: calc(var(--font_size) * 0.9);
     font-weight: bold;
     align-items: center;
     text-align: center;

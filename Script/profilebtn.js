@@ -29,5 +29,10 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>`;
     
     container.insertAdjacentHTML('beforeend', profileCard);
+
+    const card = document.querySelector('.card');
+    requestAnimationFrame(() => {
+      card.classList.add('show');
+    });
   });
-  });
+});

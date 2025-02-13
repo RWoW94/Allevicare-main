@@ -1,7 +1,42 @@
 :root{
     /* Adjusts the apps general font-size */
-    --font_size_1rem: 1rem;
+    --font_size: 0.6rem;
 
     /* Adjusts width of middle section */
-    --view_width_80: 80vw;
+    --view_width: 80vw;
+}
+
+@media (min-width: 390px) {
+    :root {
+        --font_size: 0.7rem; 
+        --view_width: 90vw; 
+    }
+}
+
+@media (min-width: 400px) and (max-width: 600px) {
+    :root {
+        --font_size: 1rem; 
+        --view_width: 80vw; 
+    }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+    :root {
+        --font_size: 1.2rem; 
+        --view_width: 70vw;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    :root {
+        --font_size: 1.5rem; 
+        --view_width: 60vw; 
+    }
+}
+
+@media (min-width: 1025px) {
+    :root {
+        --font_size: 2rem; 
+        --view_width: 50vw; 
+    }
 }

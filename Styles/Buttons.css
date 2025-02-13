@@ -4,7 +4,7 @@
     border: 0.2rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
     border-radius: 1rem;
     background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));  
-    font-size: calc(var(--font_size_1rem) * 3);
+    font-size: calc(var(--font_size) * 3);
     align-content: center;
     text-align: center;
     
@@ -16,7 +16,7 @@
     border-radius: 0.2rem;
     background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));
     width: 100%;
-    font-size: calc(var(--font_size_1rem));
+    font-size: calc(var(--font_size));
 }
 
 .btn_click{
@@ -24,7 +24,7 @@
 }
 
 .btn_click:active {
-    transform: scale(0.99);
+    transform: scale(0.9);
     box-shadow: none;
 }
 
@@ -43,7 +43,8 @@
     border-radius: 0.5rem;
     background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));
     width: 100%;
-    font-size:calc(var(--font_size_1rem) * 1.7);
+    font-size:calc(var(--font_size) * 1.7);
+    margin-bottom: 1rem;
 }
 
 .question_button{
@@ -51,8 +52,10 @@
     border: 0.2rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
     border-radius: 0.5rem;
     background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));
-    width: 10%;
-    font-size:calc(var(--font_size_1rem) * 2);
+    width: 15%;
+    font-size:calc(var(--font_size) * 2);
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
 .btn_bg::before{

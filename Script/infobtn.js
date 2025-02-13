@@ -35,5 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
         
         container.insertAdjacentHTML('beforeend', informationCard);
+        const card = document.querySelector('.card');
+        requestAnimationFrame(() => {
+          card.classList.add('show');
+        });
     });
 });

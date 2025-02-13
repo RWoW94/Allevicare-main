@@ -56,4 +56,35 @@ function applyContrast(Contrast) {
   }
 }
 
+ /*------------------------------------------------------------------------------ */
+
+   // Function for Size
+function saveSize() {
+  const selectedSize = document.getElementById("Size").value;
+  localStorage.setItem("selectedSize", selectedSize);  // Save in localStorage
+  
+  console.log("Settings saved! Size selected:", selectedSize); 
+
+  applySize(selectedSize);  
+}
+
+// Funktion to get wanted size
+// Funktion för att justera textstorlek och bredd
+function applySize(Size) {
+  const root = document.documentElement;
+
+  // Storlekstabell för både font-size och layout-bredd
+  const themeSize = {
+      "sizeBig": { fontSize: 1.1, viewWidth: "85vw" },  
+      "sizeMedium": { fontSize: 0.9, viewWidth: "82vw" }, 
+      "sizeSmall": { fontSize: 0.6, viewWidth: "80vw" }, 
+  };
+
+  if (themeSize[Size] !== undefined) {
+      root.style.setProperty("--font_size", themeSize[Size].fontSize + "rem");
+      root.style.setProperty("--view_width", themeSize[Size].viewWidth) + "vw";
+  } else {
+      console.error("Error: Unknown size!", Size);
+  }
+}
 

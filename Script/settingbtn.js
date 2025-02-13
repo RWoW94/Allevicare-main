@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!container) return;
 
       const settingCard = `<div class="boxspan_1-5_row card card_flex">
-      <div class="card_mg_inline card_mg_block" style="width: 100%;"> 
+      <div class="card_mg_inline card_mg_block" style="width: 90%;"> 
         <h2>Inställningar</h2>
         <div class="card_flex card_flex_col">
           
@@ -33,22 +33,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
           <label for="Contrast">Kontrast:</label>
           <select id="Contrast" class="textfield">
-            <option value="high">Hög</option>
-            <option value="medium">Medium</option>
             <option value="low">låg</option>
+            <option value="medium">Medium</option>
+            <option value="high">Hög</option>
+           </select>
+
+           <label for="Size">Textstorlek:</label>
+          <select id="Size" class="textfield">
+            <option value="sizeSmall">Liten</option>
+            <option value="sizeMedium">Medium</option>
+            <option value="sizeBig">Stor</option>
            </select>
     
-          <label for="notifications">Aviseringar:</label>
-          <select id="notifications" class="textfield">
-            <option value="on">På</option>
-            <option value="off">Av</option>
-          </select>
+           <label for="notifications">Aviseringar:</label>
+           <select id="notifications" class="textfield">
+             <option value="day">Dagligen</option>
+             <option value="week">veckovis</option>
+             <option value="off">Av</option>
+           </select>
     
-          <button class="button1 btn_click" onclick="saveColor(); saveContrast();">Spara ändringar</button>
+          <button class="button1 btn_click card_mg_block" onclick="saveColor(); saveContrast(); saveSize();">Spara ändringar</button>
         </div>
       </div>
     </div>`;
       
     container.insertAdjacentHTML('beforeend', settingCard);
+    const card = document.querySelector('.card');
+    requestAnimationFrame(() => {
+      card.classList.add('show');
+    });
     });
   });

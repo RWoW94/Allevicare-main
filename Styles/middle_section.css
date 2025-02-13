@@ -1,18 +1,22 @@
 .container{
-  width: var(--view_width_80);
+  /* width: var(--view_width); */
+  height: 100vh;
 }
 
 .grid--example {
   display: grid;
   height: 100%;
-    grid-template-columns: repeat(3, calc(var(--view_width_80) / 3));
-    grid-template-rows: repeat(6, calc(var(--view_width_80) / 3));
+    grid-template-columns: repeat(3, calc(var(--view_width) / 3));
+    grid-template-rows: repeat(6, calc(var(--view_width) / 3));
 }
 
 .mgtop{
   margin-block-start: auto;
 }
 
+.box_content_center{
+    margin-block: auto;
+}
 
 .box-1{
   grid-column: 1;
