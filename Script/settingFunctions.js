@@ -3,7 +3,7 @@ function saveColor() {
     const selectedTheme = document.getElementById("theme").value;
     localStorage.setItem("selectedTheme", selectedTheme);  // Save in localStorage
     
-    console.log("Settings saved! Color selected:", selectedTheme); // message in console
+    console.log("Settings saved! mode selected:", selectedTheme); // message in console
   
     // Update theme when pressed save button
     applyColor(selectedTheme);  // Call applyTheme to update theme
@@ -13,18 +13,14 @@ function saveColor() {
   function applyColor(theme) {
     const root = document.documentElement;
     const themeColors = {
-      "blue": "175",  
-      "red": "6",     
-      "green": "145",   
-      "yellow": "45",   
-      "purple": "270", 
-      "orange": "30" 
+      "light": 1,  
+      "dark": 1.6
     };
   
     if (themeColors[theme]) {
-      root.style.setProperty("--color", themeColors[theme]);
+      root.style.setProperty("--lum", themeColors[theme]);
     } else {
-      console.error("Error: Unknown color!", theme); // error message in console 
+      console.error("Error: Unknown mode!", theme); // error message in console 
     }
   }
 
@@ -58,7 +54,7 @@ function applyContrast(Contrast) {
 
  /*------------------------------------------------------------------------------ */
 
-   // Function for Size
+// Function for Size
 function saveSize() {
   const selectedSize = document.getElementById("Size").value;
   localStorage.setItem("selectedSize", selectedSize);  // Save in localStorage
@@ -69,22 +65,27 @@ function saveSize() {
 }
 
 // Funktion to get wanted size
-// Funktion för att justera textstorlek och bredd
 function applySize(Size) {
   const root = document.documentElement;
 
-  // Storlekstabell för både font-size och layout-bredd
-  const themeSize = {
-      "sizeBig": { fontSize: 1.1, viewWidth: "85vw" },  
-      "sizeMedium": { fontSize: 0.9, viewWidth: "82vw" }, 
-      "sizeSmall": { fontSize: 0.6, viewWidth: "80vw" }, 
+  // Uses the variable font_size, if error the font size will be 0.7
+  // const defaultFontSize = parseFloat(getComputedStyle(root).getPropertyValue('--font_size')) || 0.7;
+
+  const defaultFontSize = 0.6;
+
+   // Sizes
+   const sizeMultipliers = {
+    "sizeBig": 1.45,   
+    "sizeMedium": 1.35, 
+    "sizeSmall": 1 
   };
 
-  if (themeSize[Size] !== undefined) {
-      root.style.setProperty("--font_size", themeSize[Size].fontSize + "rem");
-      root.style.setProperty("--view_width", themeSize[Size].viewWidth) + "vw";
-  } else {
-      console.error("Error: Unknown size!", Size);
-  }
+   if (sizeMultipliers[Size] !== undefined) {
+    let newFontSize = defaultFontSize * sizeMultipliers[Size];
+
+    root.style.setProperty("--font_size", newFontSize + "rem");
+} else {
+    console.error("Error: Unknown size!", Size);
+}
 }
 

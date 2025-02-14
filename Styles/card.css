@@ -5,7 +5,7 @@
     background: fixed hsl(var(--hue--4), var(--sat--4), var(--lum--4));
     z-index: 1;
     overflow: auto;
-    opacity: 0.3;
+    opacity: 0.3; /* 0.3 */
     transform: translateY(10px);
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -27,6 +27,11 @@
     margin-left: auto;
 }
 
+.card_content_frame{
+    border: 0.3rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
+    border-radius: 1rem;
+    background: fixed hsl(var(--hue--1), var(--sat--1), var(--lum--1));   
+}
 .card_flex{
     display: flex;
     /* align-items: center; */
@@ -52,11 +57,18 @@
 
 .card_grid{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     /* grid-template-rows: repeat(2, 1fr); */
-    gap: 1rem;
+    gap: 0.3rem;
 }
 
+.riskinfo_card{
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
 
 

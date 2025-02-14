@@ -2,7 +2,7 @@
      /* theme */
     --hue--1: var(--color); /* Button-Background */
     --sat--1: 13%; /* Button-Background */
-    --lum--1: 85%; /*85%; /* Button-Background */
+    --lum--1: calc(85% / var(--lum)); /* 85%; /* Button-Background */
 
     --hue--2: var(--color); /* Text */
     --sat--2: 22%; /* Text */
@@ -14,7 +14,7 @@
 
     --hue--4: var(--color); /* light bg-area */
     --sat--4: 22%; /* light bg-area */
-    --lum--4: 90%; /* 90%; /* light bg-area */
+    --lum--4: calc(90% / var(--lum)); /* 90%; /* 90%; /* light bg-area */
 
     --hue--5: var(--color); /* dark bg-area */
     --sat--5: 22%; /* dark bg-area */
@@ -26,7 +26,6 @@
 
       /* default luminance low */
       --lum: 1;
+      /* --lumDark: 1; */
   
-
 }
-

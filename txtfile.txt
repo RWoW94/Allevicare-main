@@ -1,0 +1,60 @@
+<!-- <div class="boxspan_1-5_row card card_flex">
+          <div class="card_mg_inline card_mg_block"> 
+            <div class="card_flex">
+              <img class="circle border" src="/img/profile/old_man_1.jpg" alt="" width="35%" height="35%">
+              <p>Namn: Hasse <br> Ålder: 76 <br> Telefon: 070 056 98 11 <br> Adress: ${adr}  </p>
+              <div class="card_button" onclick="editProfile()"><i class="bi bi-gear"></i></div>
+            </div>
+            <div class="card_flex card_flex_col">
+              <h2>Hälsouppgifter</h2>
+              <p>
+               Hasse Elfenben har en hjärtinfarkt och har svårt att röra sig. Han har även diabetes och har svårt att se.
+               Hasse har även en allergi mot nötter, därför är han allergisk mot sig själv. 
+               Han kan inte äta gluten och har svårt att svälja.
+               <br>
+              <br>
+               Han lider även av analfissur och har svårt att gå på toaletten.
+               Sjuksköterskan har rekommenderat att han ska äta mer fibrer och dricka mer vatten.
+               
+               Hasse Elfenben har en hjärtinfarkt och har svårt att röra sig. Han har även diabetes och har svårt att se.
+               Hasse har även en allergi mot nötter, därför är han allergisk mot sig själv. 
+               Han kan inte äta gluten och har svårt att svälja.
+               <br>
+              <br>
+               Han lider även av analfissur och har svårt att gå på toaletten.
+               Sjuksköterskan har rekommenderat att han ska äta mer fibrer och dricka mer vatten.
+               Hasse Elfenben har en hjärtinfarkt och har svårt att röra sig. Han har även diabetes och har svårt att se.
+               Hasse har även en allergi mot nötter, därför är han allergisk mot sig själv. 
+               Han kan inte äta gluten och har svårt att svälja.
+               <br>
+              <br>
+               Han lider även av analfissur och har svårt att gå på toaletten.
+               Sjuksköterskan har rekommenderat att han ska äta mer fibrer och dricka mer vatten.
+              </p>
+            </div>            
+            <h2>Närmaste anhöriga</h2>                         
+              <div class="card_grid">
+              <p>Namn: Anna Elfenben <br> Relation: Dotter <br> Telefon: 073-987 65 43</p>
+              <p>Namn: Karl Elfenben <br> Relation: Son <br> Telefon: 073-876 54 32</p>
+              <p>Namn: Lisa Elfenben <br> Relation: Fru <br> Telefon: 073-765 43 21</p>
+              <p>Namn: Erik Elfenben <br> Relation: Bror <br> Telefon: 073-654 32 10</p>
+              <p>Namn: Maria Elfenben <br> Relation: Syster <br> Telefon: 073-543 21 09</p>
+              <p>Namn: Johan Hud <br> Relation: Vän <br> Telefon: 073-432 10 98</p>
+              </div>            
+          </div>
+          
+          <script>
+            function editProfile() {
+              const card = document.querySelector('.boxspan_full.card');
+              const paragraphs = card.querySelectorAll('p');
+              paragraphs.forEach(p => {
+                const text = p.innerText;
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.value = text;
+                input.classList.add('textfield'); // Add the textfield class
+                p.replaceWith(input);
+              });
+            }
+          </script>
+        </div>

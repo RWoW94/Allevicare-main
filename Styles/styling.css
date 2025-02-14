@@ -13,3 +13,7 @@
 .narrowheight{
     height: calc(100% * 0.7);
 }
+
+.center {
+    align-items: center;
+}

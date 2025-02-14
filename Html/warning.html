@@ -26,59 +26,15 @@
         <div class="box-8 button circle button-zoom b_shadow"><i class="bi bi-camera-fill"></i></div>
         <div class="box-10 button btn_bg top-right-curve "><i class="bi bi-exclamation-triangle"></i></div>
         <div class="box-12 button btn_bg top-left-curve"><i class="bi bi-gear"></i></div>
-      <!--   <div class="boxspan_full card card_flex">
-            <div class="card_mg_inline card_mg_block"> 
-              <div class="card_flex">
-                <img class="circle border" src="/img/profile/old_man_1.jpg" alt="" width="35%" height="35%">
-                <p>Namn: ${name} <br> Ålder: ${age} <br> Telefon: ${num} <br> Adress: ${adr}  </p>
-                <div class="card_button" onclick="editProfile()"><i class="bi bi-gear"></i></div>
-              </div>
-              <div class="card_flex card_flex_col">
-                <h2>Hälsouppgifter</h2>
-                <p>
-                 Hasse Elfenben har en hjärtinfarkt och har svårt att röra sig. Han har även diabetes och har svårt att se.
-                 Hasse har även en allergi mot nötter, därför är han allergisk mot sig själv. 
-                 Han kan inte äta gluten och har svårt att svälja.
-                 <br>
-                <br>
-                 Han lider även av analfissur och har svårt att gå på toaletten.
-                 Sjuksköterskan har rekommenderat att han ska äta mer fibrer och dricka mer vatten.
-                 
-                 Hasse Elfenben har en hjärtinfarkt och har svårt att röra sig. Han har även diabetes och har svårt att se.
-                 Hasse har även en allergi mot nötter, därför är han allergisk mot sig själv. 
-                 Han kan inte äta gluten och har svårt att svälja.
-                 <br>
-                <br>
-                 Han lider även av analfissur och har svårt att gå på toaletten.
-                 Sjuksköterskan har rekommenderat att han ska äta mer fibrer och dricka mer vatten.
-                 Hasse Elfenben har en hjärtinfarkt och har svårt att röra sig. Han har även diabetes och har svårt att se.
-                 Hasse har även en allergi mot nötter, därför är han allergisk mot sig själv. 
-                 Han kan inte äta gluten och har svårt att svälja.
-                 <br>
-                <br>
-                 Han lider även av analfissur och har svårt att gå på toaletten.
-                 Sjuksköterskan har rekommenderat att han ska äta mer fibrer och dricka mer vatten.
-                </p>
-              </div>            
-              <h2>Närmaste anhöriga</h2>                         
-                <div class="card_grid">
-                <p>Namn: Anna Elfenben <br> Relation: Dotter <br> Telefon: 073-987 65 43</p>
-                <p>Namn: Karl Elfenben <br> Relation: Son <br> Telefon: 073-876 54 32</p>
-                <p>Namn: Lisa Elfenben <br> Relation: Fru <br> Telefon: 073-765 43 21</p>
-                <p>Namn: Erik Elfenben <br> Relation: Bror <br> Telefon: 073-654 32 10</p>
-                <p>Namn: Maria Elfenben <br> Relation: Syster <br> Telefon: 073-543 21 09</p>
-                <p>Namn: Johan Hud <br> Relation: Vän <br> Telefon: 073-432 10 98</p>
-                </div>            
-            </div> -->
-        <!------------------- Card Section -------------------------->
+
+
         <div class="boxspan_1-5_row card">
           <div class="card_mg_inline card_mg_block">
             <h2>Identfierade Risker</h2>
             <div class="card_flex">
               <h3>Total riskbedömning: Hög</h3><i class="bi bi-exclamation-triangle" style="color: red; align-content: center;"></i>
                    </div>
-                   <h3>Antal identifierade risker: 4</h3>
-                   <h3>Hög risk för fall - åtgärder rekommenderas!</h3>
+                   <h3 id="riskCount"></h3>
                     <div class="card_flex">
                         <div class="warning_btn"><i class="bi bi-exclamation-triangle" style="color: red; margin-left: 0.3rem; margin-right: 1rem;" ></i>Belysning</div>
                         <div class="question_button btn_click"><i class="bi bi-question"></i></div>
@@ -97,10 +53,6 @@
                     </div>
                     </div>
                 </div>
-            
-            
-            
-          
         </div>       
       </div>
     </section>

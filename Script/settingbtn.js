@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!container) return;
 
       const settingCard = `<div class="boxspan_1-5_row card card_flex">
-      <div class="card_mg_inline card_mg_block" style="width: 90%;"> 
+      <div class="card_mg_inline card_mg_block" style="width: 100%;"> 
         <h2>Inställningar</h2>
         <div class="card_flex card_flex_col">
           
@@ -21,14 +21,10 @@ document.addEventListener("DOMContentLoaded", function () {
             <option value="es">Español</option>
           </select>
 
-          <label for="theme">Färg tema:</label>
+          <label for="theme">Tema:</label>
           <select id="theme" class="textfield">
-            <option value="blue">Blå</option>
-            <option value="red">Röd</option>
-            <option value="green">Grön</option>
-            <option value="yellow">Gul</option>
-            <option value="purple">Lila</option>
-           <option value="orange">Orange</option>
+            <option value="light">Light mode</option>
+            <option value="dark">Dark mode</option>
           </select>
 
           <label for="Contrast">Kontrast:</label>
