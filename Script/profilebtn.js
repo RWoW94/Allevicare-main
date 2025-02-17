@@ -7,6 +7,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const age = 75;
     const num = "070-123 45 67";
     const adr = "Storgatan 1, 123 45 Stockholm";
+    const healthStatus = 4;
+    const maxHealthStatus = 5;
+    const healthPercentage = (healthStatus / maxHealthStatus) * 100;
+
+    const div = `
+      <div class="card_content_frame">
+      <h3>Balans</h3>
+      <p>Status: ${healthStatus}/${maxHealthStatus}</p>
+      <div class="health-bar">
+        <div class="health-bar__fill" style="width: ${healthPercentage}%;"></div>
+      </div>
+      </div>`;
 
     const profileCard = `
     <div class="boxspan_1-5_row card card_flex">
@@ -18,36 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>           
       <h2>Hälso uppgifter</h2>                          
       <div class="card_grid">        
-          <div class="card_content_frame">
-            <p>Blodtryck: 120/80</p>
-            <p>Puls: 70</p>
-            <p>Blodsocker: 5.5</p>
-          </div>
-          <div class="card_content_frame">
-            <p>Vikt: 75 kg</p>
-            <p>Längd: 175 cm</p>
-            <p>Temperatur: 36.5</p>          
-        </div>
-        <div class="card_content_frame">
-            <p>Blodtryck: 120/80</p>
-            <p>Puls: 70</p>
-            <p>Blodsocker: 5.5</p>
-          </div>
-          <div class="card_content_frame">
-            <p>Vikt: 75 kg</p>
-            <p>Längd: 175 cm</p>
-            <p>Temperatur: 36.5</p>          
-        </div>
-        <div class="card_content_frame">
-            <p>Blodtryck: 120/80</p>
-            <p>Puls: 70</p>
-            <p>Blodsocker: 5.5</p>
-          </div>
-          <div class="card_content_frame">
-            <p>Vikt: 75 kg</p>
-            <p>Längd: 175 cm</p>
-            <p>Temperatur: 36.5</p>          
-        </div>
+      ${div}
+      ${div}
+      ${div}
+      ${div}
 
       </div>            
       </div>
