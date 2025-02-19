@@ -16,27 +16,23 @@
   <body class="flex flex_col">
     <header>
       <h1 style="text-align: center;">VÄLKOMMEN <br> TILL <br> ALLEVICARE</h1>
-        
     </header>
     <section class="container">
-      
-        <form class="grid--example">
-          <div class="flex2 flex_col box_span4-6">
-            <input type="email" class="textfield"  placeholder="Användarnamn">
-            <input type="password" class="textfield"  placeholder="Lösenord">
-            <a href="#">Glömt lösenord?</a>
-          </div>
-          <div class="box-8 flex2 flex_col"><button type="submit" class="button1">Logga in</button>
-           <div><input type="checkbox"  name="remember">
+      <form class="grid--example" id="login-form">
+        <div class="flex2 flex_col box_span4-6">
+          <input type="username" id="username" class="textfield" placeholder="Användarnamn">
+          <input type="password" id="password" class="textfield" placeholder="Lösenord">
+          <a href="#">Glömt lösenord?</a>
+        </div>
+        <div class="box-8 flex2 flex_col">
+          <button type="submit" class="button1" id="login-button">Logga in</button>
+          <div><input type="checkbox" name="remember">
             <label for="remember" class="register-text">Kom ihåg mig</label></div>
-            <div class="register-text">Inget konto? <a href="#">Skapa konto</a></div> 
-              
-                    
-          </div>
-          <div class="box-10 mgtop"><button class="button1" >Om oss</button></div>
-        </form>
-        
+          <div class="register-text">Inget konto? <a href="#">Skapa konto</a></div>
+        </div>
+        <div class="box-10 mgtop"><button class="button1">Om oss</button></div>
+      </form>
     </section>
-
   </body>
+  <script src="/routes/loginRoute.js"></script>
 </html>
