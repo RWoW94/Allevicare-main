@@ -7,7 +7,6 @@ const User = require("../Server/user");
 
 require("dotenv").config();
 
-
 const app = express();
 const port = 3000;
 
@@ -74,8 +73,8 @@ app.get("/users/:username", async (req, res) => {
     }
 
     // Skicka tillbaka profiluppgifter
-    const { name, age, number, address } = user;
-    res.json({ name, age, number, address });
+    const {name, age, number, address } = user;
+    res.json({name, age, number, address });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
@@ -147,6 +146,36 @@ app.post('/login', async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
+
+//-------------- health form ---------------
+
+// // GET - Hämta alla hälsodata
+// app.get("/healthform", async (req, res) => {
+//   try {
+//     const healthForms = await HealthForm.find().populate("userId", "username");
+//     res.status(200).json(healthForms);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
+
+// // POST - Skapa ett nytt hälsoformulär
+// app.post("/healthform", async (req, res) => {
+//   try {
+//     const { userId, name, level } = req.body;
+
+//     // Validera att level är mellan 1-5
+//     if (level < 1 || level > 5) {
+//       return res.status(400).json({ message: "Level must be between 1 and 5" });
+//     }
+
+//     const newHealthForm = new HealthForm({ userId, name, level });
+//     const savedHealthForm = await newHealthForm.save();
+//     res.status(201).json(savedHealthForm);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
 
 // Routes

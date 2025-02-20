@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(`http://localhost:3000/users/${username}`)
       .then((response) => response.json())
       .then((data) => {
-        const { name, age, number, address } = data;
+        const {name, age, number, address } = data;
 
         // Skapa profilkortet med användarens information
         const profileCard = `
