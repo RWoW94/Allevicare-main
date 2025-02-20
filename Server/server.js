@@ -27,52 +27,11 @@ mongoose
   .catch((err) => console.log("MongoDB Connection Error:", err));
 
 
-// Routes
-app.use("/api/auth", authRoutes); // Attach authentication routes
-
-app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Html/Login-page.html"));
-});
-
-app.get("/Home", (req, res) => { //Home
-  res.sendFile(path.join(__dirname, "../Html/home.html"));
-});
-
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
-
-//-------------- test ---------------
-const ItemSchema = new mongoose.Schema({
-  name: String,
-});
-
-const Item = mongoose.model("Item", ItemSchema);
-
-app.post("/items", async (req, res) => {
-  const newItem = new Item({ name: req.body.name });
-  await newItem.save();
-  res.json(newItem);
-});
-
-app.get("/items", async (req, res) => {
-  const items = await Item.find();
-  res.json(items);
-});
-
 //-------------- user ---------------
-// Användarschema
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  name: { type: String, required: true },
-});
-
-
 
 // **POST** - Skapa en ny användare
 app.post("/users", async (req, res) => {
-  const { username, password, name } = req.body;
+  const { username, password, name, age, number, address } = req.body;
 
   try {
     // Kolla om användaren redan finns
@@ -82,7 +41,7 @@ app.post("/users", async (req, res) => {
     }
 
     // Skapa och spara ny användare
-    const newUser = new User({ username, password, name });
+    const newUser = new User({ username, password, name, age, number, address });
     await newUser.save();
 
     res.status(201).json(newUser);
@@ -95,22 +54,28 @@ app.post("/users", async (req, res) => {
 app.get("/users", async (req, res) => {
   try {
     const users = await User.find();
+    console.log("Users found:", users); // Loggar de hämtade användarna
     res.json(users);
   } catch (error) {
+    console.error("Error fetching users:", error);
     res.status(500).json({ message: "Server error" });
   }
 });
 
+
 // **GET** - Hämta en användare baserat på användarnamn
 app.get("/users/:username", async (req, res) => {
   const { username } = req.params;
-
   try {
     const user = await User.findOne({ username });
+
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    res.json(user);
+
+    // Skicka tillbaka profiluppgifter
+    const { name, age, number, address } = user;
+    res.json({ name, age, number, address });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
@@ -135,23 +100,20 @@ app.delete("/users/:username", async (req, res) => {
 // **PUT** - Uppdatera en användare baserat på användarnamn
 app.put("/users/:username", async (req, res) => {
   const { username } = req.params;
-  const { password, name } = req.body;
+  const { password, name, age, number, address } = req.body; // Se till att alla fält inkluderas
 
   try {
-    // Hitta användaren
     const user = await User.findOne({ username });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Uppdatera användarens information
-    if (password) {
-      // Om lösenordet är med, hash det innan vi uppdaterar
-      user.password = password;
-    }
-    if (name) {
-      user.name = name;
-    }
+    // Uppdatera endast de fält som skickas i requesten
+    if (password) user.password = password;
+    if (name) user.name = name;
+    if (age) user.age = age;
+    if (number) user.number = number;
+    if (address) user.address = address;
 
     await user.save();
     res.json(user);
@@ -159,6 +121,7 @@ app.put("/users/:username", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
+
 
 // Exempel på POST route för login i backend
 app.post('/login', async (req, res) => {
@@ -183,5 +146,21 @@ app.post('/login', async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
+});
+
+
+// Routes
+app.use("/api/auth", authRoutes); 
+
+app.get("/login", (req, res) => {
+  res.sendFile(path.join(__dirname, "../Html/Login-page.html"));
+});
+
+app.get("/:username", (req, res) => { //Home
+  res.sendFile(path.join(__dirname, "../Html/home.html"));
+});
+
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });
 

@@ -22,7 +22,7 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
  localStorage.setItem('token', home.token);
 
  // Omdirigera användaren till /Home
- window.location.href = '/Home';
+ window.location.href = `/${username}`;
 } else {
  console.log("Inloggning misslyckades:", home.message);
 }
