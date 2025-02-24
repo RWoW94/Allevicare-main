@@ -4,6 +4,7 @@ const path = require("path");
 const dotenv = require("dotenv");
 const authRoutes = require("../routes/regRoute");
 const User = require("../Server/user");
+const HealthForm = require("../Server/HealthForm");
 
 require("dotenv").config();
 
@@ -149,34 +150,49 @@ app.post('/login', async (req, res) => {
 
 //-------------- health form ---------------
 
-// // GET - Hämta alla hälsodata
-// app.get("/healthform", async (req, res) => {
-//   try {
-//     const healthForms = await HealthForm.find().populate("userId", "username");
-//     res.status(200).json(healthForms);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
+// GET - Hämta alla hälsodata
+app.get("/healthform", async (req, res) => {
+  try {
+    const healthForms = await HealthForm.find().populate("username");
+    res.status(200).json(healthForms);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
-// // POST - Skapa ett nytt hälsoformulär
-// app.post("/healthform", async (req, res) => {
-//   try {
-//     const { userId, name, level } = req.body;
+// POST - Skapa ett nytt hälsoformulär
+app.post("/healthform", async (req, res) => {
+  try {
+    const { username, healthId, healthInfo, level } = req.body;
 
-//     // Validera att level är mellan 1-5
-//     if (level < 1 || level > 5) {
-//       return res.status(400).json({ message: "Level must be between 1 and 5" });
-//     }
+    // Validera att level är mellan 1-5
+    if (level < 1 || level > 5) {
+      return res.status(400).json({ message: "Level must be between 1 and 5" });
+    }
 
-//     const newHealthForm = new HealthForm({ userId, name, level });
-//     const savedHealthForm = await newHealthForm.save();
-//     res.status(201).json(savedHealthForm);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
+    const newHealthForm = new HealthForm({ username, healthId, healthInfo, level });
+    const savedHealthForm = await newHealthForm.save();
+    res.status(201).json(savedHealthForm);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
+// **DELETE** - Ta bort ett hälsoformulär baserat på användarnamn
+app.delete("/healthform/:healthId", async (req, res) => {
+  const { healthId } = req.params;
+
+  try {
+    const healthform = await HealthForm.findOneAndDelete({ healthId });
+    if (!healthform) {
+      return res.status(404).json({ message: "Health form not found" });
+    }
+
+    res.json({ message: "Health form deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 // Routes
 app.use("/api/auth", authRoutes); 

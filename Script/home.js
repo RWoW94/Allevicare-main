@@ -19,3 +19,4 @@ async function fetchUserProfile() {
 }
 
 fetchUserProfile();
+

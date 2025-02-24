@@ -35,13 +35,13 @@
 }
 
 .info_button1 {
-    border: 0.3rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
-    border-radius: 1rem;
-    margin-inline-start: 1rem;
-    margin-inline-end: 0.5rem;
-    font-size:calc(var(--font_size) * 5);
-    align-content: center;
-    text-align: center;
+    color: hsl(var(--hue--2), var(--sat--2), var(--lum--2));
+    border: 0.2rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
+    border-radius: 0.5rem;
+    background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));
+    width: 100%;
+    font-size:calc(var(--font_size) * 1.7);
+    margin-bottom: 1rem;
 }
 
 /* Media Query for 390x844 screen size */

@@ -53,13 +53,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const container = document.querySelector(".grid--example");
     if (!container) return;
 
-    const username = window.location.pathname.split("/")[1] // Hämtar användarnamnet från URL
+    const username = window.location.pathname.split("/")[1]// Hämtar användarnamnet från URL
 
     // Hämta användarens profilinformation från servern
-    fetch(`http://localhost:3000/users/${username}`)
-      .then((response) => response.json())
-      .then((data) => {
-        const {name, age, number, address } = data;
+    Promise.all([
+      fetch(`http://localhost:3000/users/${username}`).then((response) => response.json()),
+    ])
+    .then(([userData]) => {
+      const { name, age, number, address } = userData;
+
+    
+    
 
         // Skapa profilkortet med användarens information
         const profileCard = `
@@ -72,8 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
               <h2>Hälso uppgifter</h2>                           
               <div class="card_grid">        
                 <div class="card_content_frame">
-                  <h3>Balans</h3>
-                  <p>Status: 4/5</p>
+                  <h3></h3>
+                  <p>Status:</p>
                   <div class="health-bar">
                     <div class="health-bar__fill" style="width: 80%;"></div>
                   </div>
