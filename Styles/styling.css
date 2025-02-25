@@ -1,19 +1,32 @@
-.circle{
+.circle {
     border-radius: 50%;
 }
 
-.border{
+.border {
     border: 0.3rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
 }
 
-.b_shadow{
+.b_shadow {
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.narrowheight{
+.narrowheight {
     height: calc(100% * 0.7);
 }
 
 .center {
     align-items: center;
+}
+
+
+.health-bar {
+    background-color: hsla(var(--hue--3), var(--sat--3), var(--lum--3), 0.4);
+    border-radius: 0.25rem;
+    overflow: hidden;
+    height: 1rem;
+}
+
+.health-bar__fill {
+    background-color:hsl(var(--hue--3), var(--sat--3), var(--lum--3));
+    height: 100%;
 }

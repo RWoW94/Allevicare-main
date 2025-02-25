@@ -27,6 +27,13 @@ font-weight: normal;
 color: hsl(var(--hue--2), var(--sat--2), var(--lum--2));
 }
 
+h1,h2,h3,p,label,select {
+    font-family: var(--font-family);
+    font-weight: 300;
+}
+
+
+
 footer {
     width: 70%;
 }
@@ -39,4 +46,8 @@ a {
 
 a:active {
     transform: scale(0.95);
+}
+
+.question_button {
+    font-family: 'Poppins', sans-serif;
 }

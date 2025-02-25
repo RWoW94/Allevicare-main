@@ -28,7 +28,7 @@
 }
 
 .card_content_frame{
-    border: 0.3rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
+    border: 0.2rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
     border-radius: 1rem;
     background: fixed hsl(var(--hue--1), var(--sat--1), var(--lum--1));   
 }

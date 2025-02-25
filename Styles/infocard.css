@@ -1,5 +1,5 @@
 .info_body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
     background: fixed hsl(var(--hue--4), var(--sat--4), var(--lum--4));
     margin: 0;
@@ -14,7 +14,8 @@
 }
 
 .info_h1 {
-    font-size: 4rem;  /* Default font size for h1 */
+    font-size: 4rem;
+    font-family: 'Poppins', sans-serif;/* Default font size for h1 */
     margin: 0;
     padding: 0.5rem;
 
@@ -40,8 +41,9 @@
     border-radius: 0.5rem;
     background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));
     width: 100%;
-    font-size:calc(var(--font_size) * 1.7);
+    font-size:calc(var(--font_size) * 0.8);
     margin-bottom: 1rem;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Media Query for 390x844 screen size */

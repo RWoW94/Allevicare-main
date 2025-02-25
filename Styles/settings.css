@@ -2,6 +2,8 @@
     /* Adjusts the apps general font-size */
     --font_size: 0.6rem;
 
+    --font-family: 'Poppins', sans-serif;
+
     /* Adjusts width of middle section */
     --view_width: 70vw;
 }
