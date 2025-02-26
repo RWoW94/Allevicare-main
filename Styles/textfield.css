@@ -19,3 +19,14 @@
     text-align: center;
     
 }
+
+.checkbox-group label {
+    display: block;
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+  
+  .checkbox-group input[type="checkbox"] {
+    margin-right: 8px;
+  }
+  

@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
 const HealthInfoSchema = new mongoose.Schema({
-    username: { type: String, ref: "User", required: true},
-    infoId: { type: Number, required: true, unique: true, index: true }, 
+    userId: { type: String, ref: "User", required: true },
     illness: { type: String, required: true },
     description: { type: String, required: true },
     medication: { type: String, required: true },

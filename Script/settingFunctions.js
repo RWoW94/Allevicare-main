@@ -68,15 +68,12 @@ function saveSize() {
 function applySize(Size) {
   const root = document.documentElement;
 
-  // Uses the variable font_size, if error the font size will be 0.7
-  // const defaultFontSize = parseFloat(getComputedStyle(root).getPropertyValue('--font_size')) || 0.7;
-
-  const defaultFontSize = 0.6;
+  const defaultFontSize = parseFloat(getComputedStyle(root).getPropertyValue('--font_size'));
 
    // Sizes
    const sizeMultipliers = {
-    "sizeBig": 1.45,   
-    "sizeMedium": 1.35, 
+    "sizeBig": 1.1,   
+    "sizeMedium": 1.05, 
     "sizeSmall": 1 
   };
 
@@ -96,6 +93,10 @@ function saveUsername() {
   const newUsername = document.getElementById("username").value.trim();
   const currentUsername = window.location.pathname.split('/').pop();
 
+  if (!newUsername) {
+    return;
+  }
+
   console.log("Extracted current username:", currentUsername);
 
   fetch(`/users/${currentUsername}`, {
@@ -111,6 +112,7 @@ function saveUsername() {
       console.error("Error:", data.message);
     } else {
       console.log("Username updated successfully:", data);
+      window.location.pathname = `/${newUsername}`;
     }
   })
   .catch(error => {
@@ -118,12 +120,12 @@ function saveUsername() {
   });
 }
 
-
-
-/* function savePassword() {
+function savePassword() {
   const newPassword = document.getElementById("password").value;
   const currentUsername = localStorage.getItem("currentUsername");
 
+
+  console.log("Extracted current username:", currentUsername);
   fetch(`/users/${currentUsername}`, {
     method: "PUT",
     headers: {
@@ -142,5 +144,5 @@ function saveUsername() {
   .catch(error => {
     console.error("Error:", error);
   });
-} */
+} 
 

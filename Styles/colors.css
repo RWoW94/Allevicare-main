@@ -25,13 +25,11 @@
       --color: 175;
 
 
-
       /* default luminance low */
       --lum: 1;
       /* --lumDark: 1; */
 
-      .dark-mode {
-        --color: 200; /* Lite kallare blå */
+      .dark-mode {      
         --lum: 0.4; /* Lägre ljusstyrka */
     
         --hue--4: var(--color);

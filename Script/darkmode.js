@@ -18,3 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Dark mode aktiv:", body.classList.contains("dark-mode"));
     });
 });
+
+
+
+
+

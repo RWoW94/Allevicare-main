@@ -8,9 +8,9 @@
     --view_width: 70vw;
 }
 
-@media (min-width: 390px) {
+@media (min-width: 389px) {
     :root {
-        --font_size: 0.7rem; 
+        --font_size: 0.8rem; 
         --view_width: 85vw; 
     }
 }

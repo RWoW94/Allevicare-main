@@ -14,19 +14,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 <h3>Hög risk för fall - åtgärder rekommenderas!</h3>
                 <div id="riskInfo"></div>
                 <div class="card_flex">
-                    <div class="warning_btn"><i class="bi bi-exclamation-triangle" style="color: red; margin-left: 0.3rem; margin-right: 1rem;"></i>Belysning</div>
+                    <div class="card_content"><i class="bi bi-exclamation-triangle" style="color: red; margin-left: 0.3rem; margin-right: 1rem;"></i>Belysning</div>
                     <div class="question_button btn_click" data-info="Svag belysning kan påverka synen och öka risken för att snubbla. Rekommenderat: bättre ljuskällor."><i class="bi bi-question"></i></div>
                 </div>
                 <div class="card_flex">
-                    <div class="warning_btn"><i class="bi bi-exclamation-triangle" style="color: red; margin-left: 0.3rem; margin-right: 1rem;"></i>Höga trösklar</div>
+                    <div class="card_content"><i class="bi bi-exclamation-triangle" style="color: red; margin-left: 0.3rem; margin-right: 1rem;"></i>Höga trösklar</div>
                     <div class="question_button btn_click" data-info="Höga trösklar kan orsaka snubbling. Rekommenderat: installera ramper eller ta bort trösklar."><i class="bi bi-question"></i></div>
                 </div>
                 <div class="card_flex">
-                    <div class="warning_btn"><i class="bi bi-exclamation-triangle" style="color: orange; margin-left: 0.3rem; margin-right: 1rem;"></i>Hög mattkant</div>
+                    <div class="card_content"><i class="bi bi-exclamation-triangle" style="color: orange; margin-left: 0.3rem; margin-right: 1rem;"></i>Hög mattkant</div>
                     <div class="question_button btn_click" data-info="Höga mattkanter kan orsaka snubbling. Rekommenderat: använd mattor med låga kanter eller tejpa ner kanterna."><i class="bi bi-question"></i></div>
                 </div>
                 <div class="card_flex">
-                    <div class="warning_btn"><i class="bi bi-exclamation-triangle" style="margin-left: 0.3rem; margin-right: 1rem;"></i>Saknar handtag</div>
+                    <div class="card_content"><i class="bi bi-exclamation-triangle" style="margin-left: 0.3rem; margin-right: 1rem;"></i>Saknar handtag</div>
                     <div class="question_button btn_click" data-info="Att sakna handtag kan göra det svårt att hålla balansen. Rekommenderat: installera handtag där det behövs."><i class="bi bi-question"></i></div>
                 </div>
             </div>

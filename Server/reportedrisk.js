@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
 const reportedRiskSchema = new mongoose.Schema({
-    username: { type: String, ref: "User", required: true},
-    riskId: { type: Number, required: true, unique: true }, 
+    userId: { type: String, ref: "User", required: true },
     name: { type: String, required: true },
     description: { type: String, required: true },
     level: { type: Number, required: true, min: 1, max: 5  },

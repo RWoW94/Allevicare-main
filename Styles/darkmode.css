@@ -8,11 +8,45 @@ body {
 }
 
 /* När Dark Mode är aktivt */
+
+.dark-mode .button,
+.dark-mode .button1,
+.dark-mode .card_content,
+.dark-mode .question_button {
+    background-color: hsl(var(--hue--1), var(--sat--1), 20%); /* Mörkare knappar */
+    color: hsl(var(--hue--2), var(--sat--2), 60%) ; /* Ljusa texter */
+    border-color: hsl(var(--hue--3), var(--sat--3), 50%); /* Justera kanter */
+}
+
+/* Fix för .btn_bg som har en hårdkodad bakgrund */
+.dark-mode .btn_bg::before {
+    background-color: hsl(var(--hue--1), var(--sat--1), 20%);
+}
+
+.dark-mode .btn_bg {
+    background-color: hsl(var(--hue--3), var(--sat--3), 50%);
+}
+
+.dark-mode .textfield{
+    background-color: hsl(var(--hue--1), var(--sat--1), 20%); /* Mörkare knappar */
+    color: hsl(var(--hue--2), var(--sat--2), 60%) ; /* Ljusa texter */
+    border-color: hsl(var(--hue--3), var(--sat--3), 50%); /* Justera kanter */
+}
+
+.dark-mode a {
+    color: hsl(var(--hue--1), var(--sat--1), var(--lum--2), 70%);
+    text-decoration: underline;
+}
+
 body.dark-mode {
     background: linear-gradient(to bottom, 
         hsl(var(--hue--4), var(--sat--4), var(--lum--4)) 70%, 
         hsl(var(--hue--5), var(--sat--5), var(--lum--5)));
 }
 .dark-mode p {
-    color: hsl(var(--hue--5), var(--sat--5), var(--lum--5));
+    color: hsl(var(--hue--1), var(--sat--1), var(--lum--1), 70%);
+    font-weight: 400;
+}
+.dark-mode .card_content_frame {
+    background: hsl(var(--hue--2), var(--sat--2), var(--lum--2) 70%);
 }
