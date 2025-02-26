@@ -5,7 +5,7 @@
     background: fixed hsl(var(--hue--4), var(--sat--4), var(--lum--4));
     z-index: 1;
     overflow: auto;
-    opacity: 0.3; /* 0.3 */
+    opacity: 0.3; 
     transform: translateY(10px);
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -55,6 +55,10 @@
     margin-inline: 0.5rem;
 }
 
+.card_pad_block{
+    padding-block: 0.5rem;
+}
+
 .card_grid{
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -63,7 +67,7 @@
 }
 
 .riskinfo_card{
-    background-color: #f8f9fa;
+    background-color: hsl(var(--hue--4), var(--sat--4), calc(var(--lum--4) * 1.05));
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
@@ -72,3 +76,11 @@
 
 
 
+@media (max-width: 390px) {
+    
+    .card_flex_col_sm{
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}

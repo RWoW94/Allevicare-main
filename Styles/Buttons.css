@@ -7,7 +7,6 @@
     font-size: calc(var(--font_size) * 3);
     align-content: center;
     text-align: center;
-    
 }
 
 .button1 {
@@ -17,6 +16,17 @@
     background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));
     width: 100%;
     font-size: calc(var(--font_size));
+}
+
+.button3 {
+    color: hsl(var(--hue--2), var(--sat--2), var(--lum--2));
+    border: 0.2rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
+    border-radius: 0.5rem;
+    background-color: hsl(var(--hue--1), var(--sat--1), var(--lum--1));
+    width: 100%;
+    font-size:calc(var(--font_size) * 1.7);
+    margin-bottom: 1rem;
+    font-family: 'Poppins', sans-serif;
 }
 
 .btn_click{
@@ -36,6 +46,7 @@
     position: relative;
     background-color: hsl(var(--hue--3), var(--sat--3), var(--lum--3));
 }
+
 
 .warning_btn{
     color: hsl(var(--hue--2), var(--sat--2), var(--lum--2));
@@ -109,3 +120,21 @@
     position: absolute;
 }
 
+.dark-mode .button,
+.dark-mode .button1,
+.dark-mode .button3,
+.dark-mode .warning_btn,
+.dark-mode .question_button {
+    background-color: hsl(var(--hue--1), var(--sat--1), 25%); /* Mörkare knappar */
+    color: hsl(var(--hue--2), var(--sat--2), 85%) ; /* Ljusa texter */
+    border-color: hsl(var(--hue--3), var(--sat--3), 50%); /* Justera kanter */
+}
+
+/* Fix för .btn_bg som har en hårdkodad bakgrund */
+.dark-mode .btn_bg::before {
+    background-color: hsl(var(--hue--1), var(--sat--1), 20%);
+}
+
+.dark-mode .btn_bg {
+    background-color: hsl(var(--hue--3), var(--sat--3), 50%);
+}

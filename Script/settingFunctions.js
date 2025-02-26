@@ -89,3 +89,58 @@ function applySize(Size) {
 }
 }
 
+ /*------------------------------------------------------------------------------ */
+
+//Function for changing username and password
+function saveUsername() {
+  const newUsername = document.getElementById("username").value.trim();
+  const currentUsername = window.location.pathname.split('/').pop();
+
+  console.log("Extracted current username:", currentUsername);
+
+  fetch(`/users/${currentUsername}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ username: newUsername })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.message) {
+      console.error("Error:", data.message);
+    } else {
+      console.log("Username updated successfully:", data);
+    }
+  })
+  .catch(error => {
+    console.error("Error:", error);
+  });
+}
+
+
+
+/* function savePassword() {
+  const newPassword = document.getElementById("password").value;
+  const currentUsername = localStorage.getItem("currentUsername");
+
+  fetch(`/users/${currentUsername}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ password: newPassword })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.message) {
+      console.error("Error:", data.message);
+    } else {
+      console.log("Password updated successfully:", data);
+    }
+  })
+  .catch(error => {
+    console.error("Error:", error);
+  });
+} */
+

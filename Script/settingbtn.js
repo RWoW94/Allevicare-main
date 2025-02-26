@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
              <option value="off">Av</option>
            </select>
     
-          <button class="button1 btn_click card_mg_block" onclick="saveColor(); saveContrast(); saveSize();">Spara ändringar</button>
+          <button class="button1 btn_click card_mg_block" onclick="saveColor(); saveContrast(); saveSize(); saveUsername();">Spara ändringar</button>
         </div>
       </div>
     </div>`;

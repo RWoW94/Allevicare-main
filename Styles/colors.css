@@ -29,5 +29,18 @@
       /* default luminance low */
       --lum: 1;
       /* --lumDark: 1; */
+
+      .dark-mode {
+        --color: 200; /* Lite kallare blå */
+        --lum: 0.4; /* Lägre ljusstyrka */
+    
+        --hue--4: var(--color);
+        --sat--4: 15%;
+        --lum--4: 15%; /* Mörk bakgrund */
+    
+        --hue--5: var(--color);
+        --sat--5: 12%;
+        --lum--5: 5%; /* Extra mörkt för sektioner */
+    }
   
 }

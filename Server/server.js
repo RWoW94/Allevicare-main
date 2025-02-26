@@ -6,6 +6,8 @@ const authRoutes = require("../routes/regRoute");
 const User = require("../Server/user");
 const HealthForm = require("../Server/HealthForm");
 const HealthInfo = require("../Server/healthinfo");
+const ReportedRisk = require("../Server/reportedrisk");
+const newUsername = require("../Script/settingFunctions");
 
 require("dotenv").config();
 
@@ -61,7 +63,6 @@ app.get("/users", async (req, res) => {
   }
 });
 
-
 // GET one
 app.get("/users/:username", async (req, res) => {
   const { username } = req.params;
@@ -72,8 +73,9 @@ app.get("/users/:username", async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const healthForms = await HealthForm.find({ username });
-    const healthInfo = await HealthInfo.find({ username });
+    const healthForms = await HealthForm.find({ username }).select("-username");
+    const healthInfo = await HealthInfo.find({ username }).select("-username");
+    const reportedRisk = await ReportedRisk.find({ username }).select("-username");
     
     res.json({ 
       name: user.name,
@@ -82,7 +84,8 @@ app.get("/users/:username", async (req, res) => {
       number: user.number,
       address: user.address,
       healthForms, 
-      healthInfo 
+      healthInfo,
+      reportedRisk 
     });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
@@ -108,12 +111,20 @@ app.delete("/users/:username", async (req, res) => {
 // PUT
 app.put("/users/:username", async (req, res) => {
   const { username } = req.params;
-  const { password, name, age, number, address } = req.body; 
+  const { newUsername, password, name, age, number, address } = req.body; 
 
   try {
     const user = await User.findOne({ username });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
+    }
+
+    if (newUsername) {
+      const existingUser = await User.findOne({ username: newUsername });
+      if (existingUser) {
+        return res.status(400).json({ message: "Username already exist. Username must be unique" });
+      }
+      user.username = newUsername;
     }
 
     if (password) user.password = password;
@@ -179,7 +190,7 @@ app.post("/healthform", async (req, res) => {
       return res.status(400).json({ message: "Level must be between 1 and 5" });
     }
 
-    const newHealthForm = new HealthForm({ username, healthId, healthInfo, level });
+    const newHealthForm = new HealthForm({username, healthId, healthInfo, level });
     const savedHealthForm = await newHealthForm.save();
     res.status(201).json(savedHealthForm);
   } catch (error) {
@@ -240,14 +251,14 @@ app.get("/healthinfo", async (req, res) => {
 // POST 
 app.post("/healthinfo", async (req, res) => {
   try {
-    const { username, InfoId, description, illness, medication } = req.body;
+    const { username, infoId, description, illness, medication } = req.body;
 
     const userExists = await User.findOne({ username });
     if (!userExists) {
       return res.status(400).json({ message: "User not found" });
     }
 
-    const newHealthInfo = new HealthInfo({ username, InfoId, description, illness, medication });
+    const newHealthInfo = new HealthInfo({ username, infoId, description, illness, medication });
     const savedHealthInfo = await newHealthInfo.save();
     res.status(201).json(savedHealthInfo);
   } catch (error) {
@@ -255,15 +266,16 @@ app.post("/healthinfo", async (req, res) => {
   }
 });
 
+// PUT
 app.put("/healthinfo/:username", async (req, res) => {
   const { username } = req.params;
-  const { illness, medication  } = req.body; 
+  const { infoId, illness, description, medication  } = req.body; 
 
   try {
     const healthInfo = await HealthInfo.findOne({ username, infoId });
 
     if (!healthInfo) {
-      return res.status(404).json({ message: "Health form not found for this user" });
+      return res.status(404).json({ message: "Health info not found for this user" });
     }
 
     if (illness) healthInfo.illness = illness;
@@ -272,6 +284,91 @@ app.put("/healthinfo/:username", async (req, res) => {
 
     await healthInfo.save();
     res.json(healthInfo);
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// DELETE
+app.delete("/healthinfo/:infoId", async (req, res) => {
+  const { infoId } = req.params;
+
+  try {
+    const healthinfo = await HealthInfo.findOneAndDelete({ infoId });;
+    if (!healthinfo) {
+      return res.status(404).json({ message: "Health info not found" });
+    }
+
+    res.json({ message: "Health info deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+//-------------- reported risks ---------------
+
+// GET 
+app.get("/reportedrisk", async (req, res) => {
+  try {
+    const reportedRisk = await ReportedRisk.find();
+    res.status(200).json(reportedRisk);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// POST 
+app.post("/reportedrisk", async (req, res) => {
+  try {
+    const { username, riskId, name, description, level } = req.body;
+
+    const userExists = await User.findOne({ username });
+    if (!userExists) {
+      return res.status(400).json({ message: "User not found" });
+    }
+
+    const newReportedRisk = new ReportedRisk({ username, riskId, name, description, level });
+    const savedReportedRisk = await newReportedRisk.save();
+    res.status(201).json(savedReportedRisk);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// PUT
+app.put("/reportedrisk/:username", async (req, res) => {
+  const { username } = req.params;
+  const { riskId, name, description, level  } = req.body; 
+
+  try {
+    const reportedRisk = await ReportedRisk.findOne({ username, riskId });
+
+    if (!reportedRisk) {
+      return res.status(404).json({ message: "Reported risk not found for this user" });
+    }
+
+    if (name) reportedRisk.name = name;
+    if (description) reportedRisk.description = description;
+    if (level) reportedRisk.level = level;
+
+    await reportedRisk.save();
+    res.json(reportedRisk);
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// DELETE
+app.delete("/reportedrisk/:riskId", async (req, res) => {
+  const { riskId } = req.params;
+
+  try {
+    const reportedrisk = await ReportedRisk.findOneAndDelete({ riskId });;
+    if (!reportedrisk) {
+      return res.status(404).json({ message: "Reported risk not found" });
+    }
+
+    res.json({ message: "Reported risk deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
