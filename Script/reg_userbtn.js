@@ -10,22 +10,26 @@ document.addEventListener("DOMContentLoaded", function () {
         
       
 
-      <input type="text" id="name" placeholder="Namn" class="textfield">
+      <input type="text" id="socialnumber" placeholder="Personnummer" class="textfield">
+
+      <input type="text" id="firstname" placeholder="Namn" class="textfield">
 
       <input type="text" id="lastname" placeholder="Efternamn" class="textfield">
+
+      <input type="text" id="age" placeholder="Ålder" class="textfield">
+
+      <input type="text" id="phone" placeholder="Telefonnummer" class="textfield">
       
       <input type="text" id="address" placeholder="Adress" class="textfield">
 
-      <input type="text" id="postnr" placeholder="Postnummer" class="textfield">
+      <input type="text" id="zipcode" placeholder="Postnummer" class="textfield">
        
-      <input type="text" id="username" placeholder="Användarnamn" class="textfield">
+      <input type="text" id="reg_username" placeholder="Användarnamn" class="textfield">
 
-        <input type="password" id="password" placeholder="Lösenord" class="textfield">
+      <input type="password" id="reg_password" placeholder="Lösenord" class="textfield">
 
-        <input type="text" id="phone" placeholder="Telefonnummer" class="textfield">
-
-        <label for="balance">Balans:</label>
-        <select id="balance" class="textfield">
+        <label for="balance" id="title1">Balans:</label>
+        <select class="textfield" id="info1">
           <option value="5">Ingen balansproblematik</option>
           <option value="4">Lätt balanssvårighet (känner mig ibland ostadig)</option>
           <option value="3">Måttlig balanssvårighet (måste ibland hålla i mig för stöd)</option>
@@ -34,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </select>
 
         <label for="mobility">Gångförmåga:</label>
-        <select id="mobility" class="textfield">
+        <select id="title2" class="textfield">
           <option value="5">Går obehindrat</option>
           <option value="4">Går långsamt men utan hjälp</option>
           <option value="3">Behöver stöd (kryckor, käpp, möbler, etc.)</option>
@@ -140,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         <label for="avoidActivities">Undviker du vissa aktiviteter av rädsla för att falla?</label>
         <select id="avoidActivities" class="textfield">
-          <option value="yes">Ja</option>
+          <option value="tryesue">Ja</option>
           <option value="no">Nej</option>
         </select>
 
@@ -213,8 +217,8 @@ document.addEventListener("DOMContentLoaded", function () {
           <option value="no">Nej</option>
         </select>
 
-        <button class="button1 btn_click card_mg_block">Registrera Användare</button>
-        <button class="button1 btn_click card_mg_block">Registrera Hälsoformulär</button>
+        <button class="button1 btn_click card_mg_block" onclick="createUser()">Registrera Användare</button>
+        <button class="button1 btn_click card_mg_block" onclick="createHealthform()">Registrera Hälsoformulär</button>
       </div>
     </div>
     </div>`;

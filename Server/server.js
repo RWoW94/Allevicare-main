@@ -34,7 +34,7 @@ mongoose
 
 // POST
 app.post("/users", async (req, res) => {
-  const { username, password, name, age, number, address } = req.body;
+  const { username, password, firstname, lastname, age, socialnumber, address, zipcode, phone } = req.body;
 
   try {
     const userExists = await User.findOne({ username });
@@ -42,7 +42,7 @@ app.post("/users", async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    const newUser = new User({ username, password, name, age, number, address });
+    const newUser = new User({ username, password, firstname, lastname, age, socialnumber, address, zipcode, phone });
     await newUser.save();
 
     res.status(201).json(newUser);
@@ -73,16 +73,19 @@ app.get("/users/:username", async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const healthForms = await HealthForm.find({ userId: user._id }).select("-_id");
-    const healthInfo = await HealthInfo.find({ userId: user._id }).select("-_id");
-    const reportedRisk = await ReportedRisk.find({ userId: user._id }).select("-_id");
+    const healthForms = await HealthForm.find({ socialnumber: user.socialnumber });
+    const healthInfo = await HealthInfo.find({ socialnumber: user.socialnumber });
+    const reportedRisk = await ReportedRisk.find({ socialnumber: user.socialnumber });
     
     res.json({ 
-      name: user.name,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      socialnumber: user.socialnumber,
       password: user.password,
       age: user.age,
-      number: user.number,
+      phone: user.phone,
       address: user.address,
+      zipcode: user.zipcode,
       healthForms, 
       healthInfo,
       reportedRisk 
@@ -171,9 +174,9 @@ app.get("/healthform", async (req, res) => {
 // POST
 app.post("/healthform", async (req, res) => {
   try {
-    const { userId, healthTitle, healthInfo, level, boolean } = req.body;
+    const { socialnumber, healthTitle, healthInfo, level } = req.body;
 
-    const userExists = await User.findById(userId);
+    const userExists = await User.findOne({ socialnumber });
     if (!userExists) {
       return res.status(400).json({ message: "User not found" });
     }
@@ -182,7 +185,7 @@ app.post("/healthform", async (req, res) => {
       return res.status(400).json({ message: "Level must be between 1 and 5" });
     }
 
-    const newHealthForm = new HealthForm({userId, healthTitle, healthInfo, level, boolean });
+    const newHealthForm = new HealthForm({socialnumber, healthTitle, healthInfo, level });
     const savedHealthForm = await newHealthForm.save();
     res.status(201).json(savedHealthForm);
   } catch (error) {
