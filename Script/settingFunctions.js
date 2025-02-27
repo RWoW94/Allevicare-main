@@ -112,7 +112,7 @@ function saveUsername() {
       console.error("Error:", data.message);
     } else {
       console.log("Username updated successfully:", data);
-      window.location.pathname = `/${newUsername}`;
+      window.location.pathname = window.location.pathname.replace(currentUsername, newUsername);
     }
   })
   .catch(error => {

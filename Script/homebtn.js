@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const divs = container.querySelectorAll("div");
 
             // Kontrollera att det finns minst 6 element
-            if (divs.length > 5) {
-                container.removeChild(divs[6]); // Ta bort det sjätte elementet
+            if (divs.length > divs.length -1) {
+                container.removeChild(divs[6]); // Ta bort det sjunde elementet
             }
         });
     });

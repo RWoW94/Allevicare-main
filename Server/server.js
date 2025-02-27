@@ -4,7 +4,7 @@ const path = require("path");
 const dotenv = require("dotenv");
 const authRoutes = require("../routes/regRoute");
 const User = require("../Server/user");
-const HealthForm = require("../Server/HealthForm");
+const HealthForm = require("../Server/healthform");
 const HealthInfo = require("../Server/healthinfo");
 const ReportedRisk = require("../Server/reportedrisk");
 const newUsername = require("../Script/settingFunctions");
@@ -168,10 +168,10 @@ app.get("/healthform", async (req, res) => {
   }
 });
 
-// POST 
+// POST
 app.post("/healthform", async (req, res) => {
   try {
-    const { userId, healthInfo, level } = req.body;
+    const { userId, healthTitle, healthInfo, level, boolean } = req.body;
 
     const userExists = await User.findById(userId);
     if (!userExists) {
@@ -182,7 +182,7 @@ app.post("/healthform", async (req, res) => {
       return res.status(400).json({ message: "Level must be between 1 and 5" });
     }
 
-    const newHealthForm = new HealthForm({userId, healthInfo, level });
+    const newHealthForm = new HealthForm({userId, healthTitle, healthInfo, level, boolean });
     const savedHealthForm = await newHealthForm.save();
     res.status(201).json(savedHealthForm);
   } catch (error) {
