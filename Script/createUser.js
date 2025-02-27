@@ -1,4 +1,43 @@
 //Function for changing username and password
+function createHealthform() {
+
+  let labels = document.querySelectorAll(".card_flex label");
+
+  for (let i = 0; i < labels.length; i++) {
+  let socialnumber = document.getElementById("socialnumber").value;
+
+  let healthTitle = labels[i].innerText; 
+  let selects = document.querySelectorAll(".card_flex select");
+  let healthInfo = selects[i].options[selects[i].selectedIndex].text;
+  let optionElement = selects[i];
+
+  let value = optionElement ? optionElement.value : null;
+  let level = !isNaN(value) ? value : null;
+  let answer = isNaN(value) ? value : null;
+
+  console.log("Extracted variables:", socialnumber, healthTitle, healthInfo, level, answer);
+
+  fetch('http://localhost:3000/healthform', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({socialnumber, healthTitle, healthInfo, level, answer})
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.message) {
+      console.error("Error:", data.message);
+    } else {
+      console.log("User created successfully:", data);
+    }
+  })
+  .catch(error => {
+    console.error("Error:", error);
+  });
+}
+}
+
 function createUser() {
     const username = document.getElementById("reg_username").value;
     const password = document.getElementById("reg_password").value;
@@ -24,7 +63,8 @@ function createUser() {
       if (data.message) {
         console.error("Error:", data.message);
       } else {
-        console.log("User created successfully:", data);
+        console.log("User created successfully:", data)
+        createHealthform();
       }
     })
     .catch(error => {
@@ -32,35 +72,3 @@ function createUser() {
     });
   }
 
-  function createHealthform() {
-
-    const socialnumber = document.getElementById("socialnumber").value;
-    const healthTitle = document.getElementById("title1").innerText;
-    const healthInfo = document.getElementById("info1").options[document.getElementById("info1").selectedIndex].text;
-    const level = document.getElementById("info1").value;
-    /* const answer = document.getElementById("answer1").value; */
-
-    let container = [[socialnumber, healthTitle, healthInfo, level]];
-
-  
-    console.log("Extracted variables:", container[0]);
-  
-    fetch('http://localhost:3000/healthform', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({socialnumber, healthTitle, healthInfo, level})
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.message) {
-        console.error("Error:", data.message);
-      } else {
-        console.log("User created successfully:", data);
-      }
-    })
-    .catch(error => {
-      console.error("Error:", error);
-    });
-  }

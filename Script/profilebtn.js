@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Skapa innehåll för varje hälsoform
       const content_frame = healthForms.map(form => `
         <div class="card_content_frame">
-        <h3 class="card_mg_inline">${form.healthInfo}: ${form.level}/5</h3>
+        <h3 class="card_mg_inline">${form.healthTitle} ${form.healthInfo}: ${form.level}/5</h3>
         <div class="card_mg_block card_mg_inline health-bar">
           <div class="health-bar__fill" style="width: ${form.level * 20}%;"></div>
         </div>
