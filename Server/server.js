@@ -13,6 +13,8 @@ require("dotenv").config();
 
 const app = express();
 const port = 3000;
+// const cors = require("cors");
+// const fetch = require("node-fetch");
 
 // Middleware
 app.use(express.json()); // Built-in body parsing for JSON
@@ -368,6 +370,27 @@ app.delete("/reportedrisk/:_id", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
+
+
+
+
+// app.use(cors()); // Allow all origins
+
+// app.get("/weather", async (req, res) => {
+//     const { lat, lon } = req.query;
+//     const url = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${lon}/lat/${lat}/data.json`;
+
+//     try {
+//         const response = await fetch(url);
+//         const data = await response.json();
+//         res.json(data);
+//     } catch (error) {
+//         res.status(500).json({ error: "Failed to fetch weather data" });
+//     }
+// });
+
+// app.listen(3000, () => console.log("Server running on port 3000"));
+
 
 // Routes
 app.use("/api/auth", authRoutes); 
