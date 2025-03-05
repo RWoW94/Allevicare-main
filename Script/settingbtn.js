@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       <option value="sizeBig">Stor</option>
                   </select>
       
-                  <button class="button1 btn_click card_mg_block card_inline_auto btn_70_width" onclick="saveSettings(); saveColor(); saveContrast(); saveSize(); saveUsername();">Spara ändringar</button>
+                  <button class="button1 btn_click card_mg_block card_inline_auto btn_70_width" onclick="saveSettings(); saveColor(); saveContrast(); saveSize(); saveUsername(), savePassword();">Spara ändringar</button>
               </div>
           </div>
       </div>`;
@@ -58,34 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const savedTheme = localStorage.getItem("theme") || "light";
       themeSelect.value = savedTheme;
   });
-
-  // Applicera sparat tema vid sidladdning
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
-      document.body.classList.add("dark-mode");
-  } else if (savedTheme === "auto") {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      if (mediaQuery.matches) {
-          document.body.classList.add("dark-mode");
-      }
-  }
 });
 
-// Dark mode-funktionalitet
-function saveSettings() {
-  const selectedTheme = document.getElementById("theme").value;
-  localStorage.setItem("theme", selectedTheme);
 
-  if (selectedTheme === "dark") {
-      document.body.classList.add("dark-mode");
-  } else if (selectedTheme === "light") {
-      document.body.classList.remove("dark-mode");
-  } else if (selectedTheme === "auto") {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      if (mediaQuery.matches) {
-          document.body.classList.add("dark-mode");
-      } else {
-          document.body.classList.remove("dark-mode");
-      }
-  }
-} 

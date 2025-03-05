@@ -1,30 +1,8 @@
-// Function for Color
-function saveColor() {
-    const selectedTheme = document.getElementById("theme").value;
-    localStorage.setItem("selectedTheme", selectedTheme);  // Save in localStorage
-    
-    console.log("Settings saved! mode selected:", selectedTheme); // message in console
-  
-    // Update theme when pressed save button
-    applyColor(selectedTheme);  // Call applyTheme to update theme
-  }
-  
-  // function to get the wanted color
-  function applyColor(theme) {
-    const root = document.documentElement;
-    const themeColors = {
-      "light": 1,  
-      "dark": 1.6
-    };
-  
-    if (themeColors[theme]) {
-      root.style.setProperty("--lum", themeColors[theme]);
-    } else {
-      console.error("Error: Unknown mode!", theme); // error message in console 
-    }
-  }
 
-  /*------------------------------------------------------------------------------ */
+  
+
+
+  /*---------------------------------Contrast--------------------------------------------- */
 
   // Function for Contrast
 function saveContrast() {
@@ -52,7 +30,7 @@ function applyContrast(Contrast) {
   }
 }
 
- /*------------------------------------------------------------------------------ */
+ /*----------------------------------Font size-------------------------------------------- */
 
 // Function for Size
 function saveSize() {
@@ -86,7 +64,7 @@ function applySize(Size) {
 }
 }
 
- /*------------------------------------------------------------------------------ */
+ /*------------------------------------Username And password------------------------------------------ */
 
 //Function for changing username and password
 function saveUsername() {
@@ -121,11 +99,15 @@ function saveUsername() {
 }
 
 function savePassword() {
-  const newPassword = document.getElementById("password").value;
-  const currentUsername = localStorage.getItem("currentUsername");
+  const newPassword = document.getElementById("password").value.trim();
+  const currentUsername = window.location.pathname.split('/').pop();
 
+  if (!newPassword) {
+    return;
+  }
 
   console.log("Extracted current username:", currentUsername);
+
   fetch(`/users/${currentUsername}`, {
     method: "PUT",
     headers: {
@@ -144,5 +126,52 @@ function savePassword() {
   .catch(error => {
     console.error("Error:", error);
   });
+}
+
+/*------------------------------------Darkmode Function------------------------------------------ */
+// Function to save and apply selected theme
+function saveColor() {
+  const selectedTheme = document.getElementById("theme").value;
+  localStorage.setItem("selectedTheme", selectedTheme);  // Save in localStorage
+
+  console.log("Settings saved! Them selected:", selectedTheme); // message in console
+  applyColor(selectedTheme);  // Apply the selected theme
+}
+
+// Function to apply the chosen color theme
+function applyColor(theme) {
+  const root = document.documentElement;
+  const themeColors = { "light": 1, "dark": 1.6 };
+
+  if (theme === "auto") {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    root.style.setProperty("--lum", mediaQuery.matches ? themeColors["dark"] : themeColors["light"]);
+  } else if (themeColors[theme]) {
+    root.style.setProperty("--lum", themeColors[theme]);
+  } else {
+    console.error("Error: Unknown mode!", theme); // Error message in console 
+  }
+}
+
+// Dark mode-funktionalitet
+function saveSettings() {
+  const selectedTheme = document.getElementById("theme").value;
+  localStorage.setItem("theme", selectedTheme);
+
+  if (selectedTheme === "dark") {
+      document.body.classList.add("dark-mode");
+  } else if (selectedTheme === "light") {
+      document.body.classList.remove("dark-mode");
+  } else if (selectedTheme === "auto") {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      if (mediaQuery.matches) {
+          document.body.classList.add("dark-mode");
+      } else {
+          document.body.classList.remove("dark-mode");
+      }
+  }
 } 
+
+
+
 

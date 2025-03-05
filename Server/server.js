@@ -14,8 +14,6 @@ require("dotenv").config();
 
 const app = express();
 const port = 3000;
-// const cors = require("cors");
-// const fetch = require("node-fetch");
 
 // Middleware
 app.use(express.json()); // Built-in body parsing for JSON
@@ -184,8 +182,8 @@ app.post("/healthform", async (req, res) => {
       return res.status(400).json({ message: "User not found" });
     }
 
-    if (level < 1 || level > 5) {
-      return res.status(400).json({ message: "Level must be between 1 and 5" });
+    if (level < 0 || level > 5) {
+      return res.status(400).json({ message: "Level must be between 0 and 5" });
     }
 
     const newHealthForm = new HealthForm({socialnumber, healthTitle, healthInfo, level });
@@ -227,8 +225,8 @@ app.put("/healthform/:_id", async (req, res) => {
     if (healthInfo) healthform.healthInfo = healthInfo;
     if (level) healthform.level = level;
 
-    await healthInfo.save();
-    res.json(healthInfo);
+    await healthform.save();
+    res.json(healthform);
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
@@ -334,23 +332,23 @@ app.post("/reportedrisk", async (req, res) => {
 });
 
 // PUT
-app.put("/reportedrisk/:username", async (req, res) => {
-  const { username } = req.params;
-  const { name, description, level  } = req.body; 
+app.put("/reportedrisk/:_id", async (req, res) => {
+  const { _id } = req.params;
+  const { name, description, level} = req.body; 
 
   try {
-    const reportedRisk = await ReportedRisk.findOne({ username });
+    const reportedrisk = await ReportedRisk.findById(_id);
 
-    if (!reportedRisk) {
-      return res.status(404).json({ message: "Reported risk not found for this user" });
+    if (!reportedrisk) {
+      return res.status(404).json({ message: "Reported risk not found" });
     }
 
-    if (name) reportedRisk.name = name;
-    if (description) reportedRisk.description = description;
-    if (level) reportedRisk.level = level;
+    if (name) reportedrisk.name = name;
+    if (description) reportedrisk.description = description;
+    if (level) reportedrisk.level = level;
 
-    await reportedRisk.save();
-    res.json(reportedRisk);
+    await reportedrisk.save();
+    res.json(reportedrisk);
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }

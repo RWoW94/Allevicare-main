@@ -3,35 +3,41 @@ document.addEventListener("DOMContentLoaded", function () {
         const container = document.querySelector(".grid--example");
         if (!container) return;
 
-        const username = window.location.pathname.split("/")[1]
-        // Hämta användarens profilinformation från servern
+        function getRiskColor(level) {
+            if (level >= 1 && level <= 2) return "green";  
+            if (level === 3) return "yellow";              
+            if (level >= 4) return "red";                  
+            return "gray"; 
+        }
+        
     fetch(`http://localhost:3000/users/${username}`)
     .then((response) => response.json())
     .then((userData) => {
-        const reportedRisk = Array.isArray(userData.reportedRisk) ? userData.reportedRisk : [];
-        console.log(Array.isArray(reportedRisk));
-
+        const { firstname, reportedRisk } = userData;
+        console.log("Full API-respons:", userData);
+        console.log("Reported risks:", reportedRisk);
         
-        // Skapa innehåll för varje hälsoform
-        const content_frame = reportedRisk.map(risk => `
+        const content_frame = reportedRisk.map(risk => {
+        const riskColor = getRiskColor(risk.level);
+                return `
         <div class="card_flex">
-                    <div class="card_content"><i class="bi bi-exclamation-triangle" style="color: red; margin-left: 0.3rem; margin-right: 1rem;"></i>${risk.name}</div>
-                    <div class="question_button btn_click" ${risk.description}${risk.level}"><i class="bi bi-question"></i></div>
-                </div>
-        `).join('');
+                    <div class="card_content"><i class="bi bi-exclamation-triangle" style="color: ${riskColor}; margin-left: 0.3rem; margin-right: 1rem;"></i>${risk.name}</div>
+                    <div class="question_button btn_click" data-info="${risk.description}. <br> Risknivå: ${risk.level}">
+                    <i class="bi bi-question"></i>
+            </div>
+        </div>
+     `}).join('');
 
         const warningCard = `
         <div class="boxspan_1-5_row card">
             <div class="card_mg_inline card_mg_block">
-                <h2>Identfierade Risker</h2>
+                <h2>Hej ${firstname}! </h2>
                 <div class="card_flex">
-                    <h3>Total riskbedömning: Hög</h3><i class="bi bi-exclamation-triangle" style="color: red; align-content: center;"></i>
                 </div>
                 <h3 id="riskCount">Antal identifierade risker: 4</h3>
-                <h3>Hög risk för fall - åtgärder rekommenderas!</h3>
+                <h3>Detta är riskerna identifierade hos dig:</h3>
                 <div id="riskInfo"></div>
                 ${content_frame}
-               
             </div>
         </div>
         `;
@@ -43,9 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         // Update the risk count
-        const warningButtons = document.querySelectorAll('.warning_btn');
         const riskCountElement = document.getElementById('riskCount');
-        riskCountElement.textContent = `Antal identifierade risker: ${warningButtons.length}`;
+        riskCountElement.textContent = `Antal identifierade risker: ${reportedRisk.length}`;
 
         // Add event listeners to question buttons
         const questionButtons = document.querySelectorAll('.question_button');

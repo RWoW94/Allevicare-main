@@ -1,4 +1,4 @@
-/* document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const darkModeToggle = document.getElementById("darkModeToggle");
     const body = document.body;
 
@@ -33,4 +33,3 @@
         console.log("Dark mode aktiv:", body.classList.contains("dark-mode"));
     });
 });
- */

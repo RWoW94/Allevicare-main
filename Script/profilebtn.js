@@ -9,14 +9,35 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(`http://localhost:3000/users/${username}`)
       .then((response) => response.json())
       .then((userData) => {
-      const { firstname, lastname, age, socialnumber, address, zipcode, phone, healthForms } = userData;
+      const { firstname, lastname, age, socialnumber, address, zipcode, phone, healthForms, healthInfo } = userData;
 
       // Skapa innehåll för varje hälsoform
-      const content_frame = healthForms.map(form => `
+      const content_frame = healthForms.map(form => {
+        if (form.healthInfo === 'Ja' || form.healthInfo === 'Nej') {
+          return  `
+          <div class="card_content_frame">
+            <h3 class="card_mg_inline">${form.healthTitle} ${form.healthInfo}</h3>
+            <div class="card_mg_block card_mg_inline">
+            </div>
+          </div>
+            `;
+        } else{
+          return `
         <div class="card_content_frame">
-        <h3 class="card_mg_inline">${form.healthTitle} ${form.healthInfo}: ${form.level}/5</h3>
-        <div class="card_mg_block card_mg_inline health-bar">
-          <div class="health-bar__fill" style="width: ${form.level * 20}%;"></div>
+          <h3 class="card_mg_inline">${form.healthTitle} ${form.level}/5</h3>
+          <div class="card_mg_block card_mg_inline health-bar">
+            <div class="health-bar__fill" style="width: ${form.level * 20}%;"></div>
+          </div>
+        </div>
+          `;
+        }
+      }).join('');
+
+      // Skapa innehåll för varje hälsoform
+      const content_frame_info = healthInfo.map(info => `
+        <div class="card_content_frame">
+        <h3 class="card_mg_inline">Beskrivning: ${info.description}</h3>
+        <p class="card_mg_inline"> sjukdom: ${info.illness} <br> Medicin: ${info.medication} </p>
         </div>
         </div>
       `).join('');
@@ -27,11 +48,14 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="card_mg_inline card_mg_block"> 
               <div class="card_flex card_flex_col_sm">
                 <img class="circle border" src="/img/profile/old_man_1.jpg" alt="" width="30%" height="30%">
-                <p>Namn: ${firstname} ${lastname} <br> Personnummer: ${socialnumber}<br> Ålder: ${age} <br> Telefon: ${phone} <br> Adress: ${address} <br> Postnummer: ${zipcode}</p> 
+                <p>Namn: ${firstname} ${lastname} <br>Personnummer: ${socialnumber}<br>Ålder: ${age} <br>Telefon: ${phone} <br>Adress: ${address} <br>Postnummer: ${zipcode}</p> 
               </div>           
               <h2>Hälsouppgifter</h2>                           
               <div class="card_grid card_pad_block">   
               ${content_frame}
+
+              <h2>Övring information</h2>  
+              ${content_frame_info}
               </div>            
             </div>
           </div>`;

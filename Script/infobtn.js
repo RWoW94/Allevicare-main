@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
                 
                 <div class="card_flex">
-                    <div class="card_content">Smarta lås & kameraövervakning</div>
+                    <div class="card_content">Smarta lås & kamerabevakning</div>
                     <div class="question_button btn_click" data-info="Smarta lås som Yale Doorman och Glue Lock erbjuder hög säkerhet och fjärrstyrning via mobilen. Kameraövervakning med Arlo Pro och Google Nest Cam. <a href='https://www.smarto.se/smartahem/' target='_blank'>Läs mer</a>"><i class="bi bi-question"></i></div>
                 </div>
 
