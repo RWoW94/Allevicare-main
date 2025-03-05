@@ -1,9 +1,11 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM fully loaded and parsed. Calling getLocation...");
     getLocation();
 });
 
 function getLocation() {
     if ("geolocation" in navigator) {
+        console.log("Geolocation is available. Requesting position...");
         navigator.geolocation.getCurrentPosition(success, error, { 
             enableHighAccuracy: true, 
             timeout: 10000, 
@@ -39,6 +41,7 @@ function error(err) {
 }
 
 function success(position) {
+    console.log("Position successfully retrieved:", position);
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 
@@ -88,8 +91,92 @@ function displayWeather(data) {
         <h3>Dagens väder:</h3>
         <p>Temperature: ${temp}°C</p>
     `;
-}
+} */
 
 
 
-
+    function getUserLocation() {
+        if (!("geolocation" in navigator)) {
+            document.getElementById("weather-info").innerText = "Din webbläsare stöder inte geolokalisering.";
+            return;
+        }
+    
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                let latitude = position.coords.latitude.toFixed(4);
+                let longitude = position.coords.longitude.toFixed(4);
+                console.log(`Lat: ${latitude}, Lon: ${longitude}`);
+    
+                getWeatherFromSMHI(latitude, longitude);
+            },
+            (error) => {
+                console.error("Fel vid hämtning av plats:", error.message);
+                let message = "";
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        message = "Användaren nekade platsåtkomst. Kontrollera webbläsarens inställningar.";
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        message = "Platsinformation är inte tillgänglig. Testa att stänga av VPN eller använda Wi-Fi.";
+                        break;
+                    case error.TIMEOUT:
+                        message = "Tidsgräns för platsbegäran överskriden. Testa att ladda om sidan.";
+                        break;
+                    default:
+                        message = "Ett okänt fel uppstod.";
+                        break;
+                }
+                document.getElementById("weather-info").innerText = message;
+            },
+            {
+                enableHighAccuracy: true, 
+                timeout: 15000, // Increased timeout for slow responses
+                maximumAge: 0, 
+            }
+        );
+    }
+    
+    function getWeatherFromSMHI(lat, lon) {
+        let smhiUrl = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${lon}/lat/${lat}/data.json`;
+    
+        console.log("Hämtar väderdata från:", smhiUrl);
+    
+        fetch(smhiUrl, { mode: 'cors', cache: 'no-store' }) // Fixes CORS & stale cache issues
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP-fel! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("SMHI API Response Data:", data);
+    
+                if (!data || !data.timeSeries || data.timeSeries.length === 0) {
+                    throw new Error("Ingen väderdata hittades för denna plats.");
+                }
+    
+                let forecast = data.timeSeries[0]; 
+                let temperatureData = forecast.parameters.find(p => p.name === "t");
+    
+                if (!temperatureData) {
+                    throw new Error("Kunde inte hitta temperaturdata.");
+                }
+    
+                let temperature = temperatureData.values[0]; 
+                document.getElementById("weather-info").innerText = `Aktuell temperatur: ${temperature}°C`;
+            })
+            .catch(error => {
+                console.error("Fel vid hämtning av väderdata:", error);
+                document.getElementById("weather-info").innerText = "Kunde inte hämta väderinformation: " + error.message;
+            });
+    }
+    
+    // Kör funktionen när sidan laddas
+    getUserLocation();
+    
+    
+    
+    
+    
+    
+    

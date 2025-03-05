@@ -3,6 +3,23 @@ document.addEventListener("DOMContentLoaded", function () {
         const container = document.querySelector(".grid--example");
         if (!container) return;
 
+        const username = window.location.pathname.split("/")[1]
+        // Hämta användarens profilinformation från servern
+    fetch(`http://localhost:3000/users/${username}`)
+    .then((response) => response.json())
+    .then((userData) => {
+        const reportedRisk = Array.isArray(userData.reportedRisk) ? userData.reportedRisk : [];
+        console.log(Array.isArray(reportedRisk));
+
+        
+        // Skapa innehåll för varje hälsoform
+        const content_frame = reportedRisk.map(risk => `
+        <div class="card_flex">
+                    <div class="card_content"><i class="bi bi-exclamation-triangle" style="color: red; margin-left: 0.3rem; margin-right: 1rem;"></i>${risk.name}</div>
+                    <div class="question_button btn_click" ${risk.description}${risk.level}"><i class="bi bi-question"></i></div>
+                </div>
+        `).join('');
+
         const warningCard = `
         <div class="boxspan_1-5_row card">
             <div class="card_mg_inline card_mg_block">
@@ -13,22 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 <h3 id="riskCount">Antal identifierade risker: 4</h3>
                 <h3>Hög risk för fall - åtgärder rekommenderas!</h3>
                 <div id="riskInfo"></div>
-                <div class="card_flex">
-                    <div class="card_content"><i class="bi bi-exclamation-triangle" style="color: red; margin-left: 0.3rem; margin-right: 1rem;"></i>Belysning</div>
-                    <div class="question_button btn_click" data-info="Svag belysning kan påverka synen och öka risken för att snubbla. Rekommenderat: bättre ljuskällor."><i class="bi bi-question"></i></div>
-                </div>
-                <div class="card_flex">
-                    <div class="card_content"><i class="bi bi-exclamation-triangle" style="color: red; margin-left: 0.3rem; margin-right: 1rem;"></i>Höga trösklar</div>
-                    <div class="question_button btn_click" data-info="Höga trösklar kan orsaka snubbling. Rekommenderat: installera ramper eller ta bort trösklar."><i class="bi bi-question"></i></div>
-                </div>
-                <div class="card_flex">
-                    <div class="card_content"><i class="bi bi-exclamation-triangle" style="color: orange; margin-left: 0.3rem; margin-right: 1rem;"></i>Hög mattkant</div>
-                    <div class="question_button btn_click" data-info="Höga mattkanter kan orsaka snubbling. Rekommenderat: använd mattor med låga kanter eller tejpa ner kanterna."><i class="bi bi-question"></i></div>
-                </div>
-                <div class="card_flex">
-                    <div class="card_content"><i class="bi bi-exclamation-triangle" style="margin-left: 0.3rem; margin-right: 1rem;"></i>Saknar handtag</div>
-                    <div class="question_button btn_click" data-info="Att sakna handtag kan göra det svårt att hålla balansen. Rekommenderat: installera handtag där det behövs."><i class="bi bi-question"></i></div>
-                </div>
+                ${content_frame}
+               
             </div>
         </div>
         `;
@@ -71,4 +74,4 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     });
-});
+})});

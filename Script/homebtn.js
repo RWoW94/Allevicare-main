@@ -12,7 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Kontrollera att det finns minst 6 element
             if (divs.length > divs.length -1) {
-                container.removeChild(divs[6]); // Ta bort det sjunde elementet
+                const card = container.querySelector(".card");
+                if (card) {
+                    container.removeChild(card); // Ta bort elementet med klassen 'card'
+                }
             }
         });
     });

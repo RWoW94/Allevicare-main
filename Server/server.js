@@ -9,6 +9,7 @@ const HealthInfo = require("../Server/healthinfo");
 const ReportedRisk = require("../Server/reportedrisk");
 const newUsername = require("../Script/settingFunctions");
 
+
 require("dotenv").config();
 
 const app = express();
@@ -248,14 +249,14 @@ app.get("/healthinfo", async (req, res) => {
 // POST 
 app.post("/healthinfo", async (req, res) => {
   try {
-    const { userId, description, illness, medication } = req.body;
+    const { socialnumber, description, illness, medication } = req.body;
 
-    const userExists = await User.findById(userId);
+    const userExists = await User.findOne({ socialnumber });
     if (!userExists) {
       return res.status(400).json({ message: "User not found" });
     }
 
-    const newHealthInfo = new HealthInfo({ userId, description, illness, medication });
+    const newHealthInfo = new HealthInfo({ socialnumber, description, illness, medication });
     const savedHealthInfo = await newHealthInfo.save();
     res.status(201).json(savedHealthInfo);
   } catch (error) {
@@ -317,14 +318,14 @@ app.get("/reportedrisk", async (req, res) => {
 // POST 
 app.post("/reportedrisk", async (req, res) => {
   try {
-    const { userId, name, description, level } = req.body;
+    const { socialnumber, name, description, level } = req.body;
 
-    const userExists = await User.findById(userId);
+    const userExists = await User.findOne({ socialnumber });
     if (!userExists) {
       return res.status(400).json({ message: "User not found" });
     }
 
-    const newReportedRisk = new ReportedRisk({ userId, name, description, level });
+    const newReportedRisk = new ReportedRisk({ socialnumber, name, description, level });
     const savedReportedRisk = await newReportedRisk.save();
     res.status(201).json(savedReportedRisk);
   } catch (error) {
@@ -372,24 +373,6 @@ app.delete("/reportedrisk/:_id", async (req, res) => {
 });
 
 
-
-
-// app.use(cors()); // Allow all origins
-
-// app.get("/weather", async (req, res) => {
-//     const { lat, lon } = req.query;
-//     const url = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${lon}/lat/${lat}/data.json`;
-
-//     try {
-//         const response = await fetch(url);
-//         const data = await response.json();
-//         res.json(data);
-//     } catch (error) {
-//         res.status(500).json({ error: "Failed to fetch weather data" });
-//     }
-// });
-
-// app.listen(3000, () => console.log("Server running on port 3000"));
 
 
 // Routes

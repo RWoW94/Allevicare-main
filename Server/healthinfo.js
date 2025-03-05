@@ -1,7 +1,12 @@
 const mongoose = require("mongoose");
 
 const HealthInfoSchema = new mongoose.Schema({
-    userId: { type: String, ref: "User", required: true },
+  socialnumber: { 
+    type: String, ref: "User", 
+    required: true,
+    minlength: 10,
+    maxlength: 12
+  },
     illness: { type: String, required: true },
     description: { type: String, required: true },
     medication: { type: String, required: true },
