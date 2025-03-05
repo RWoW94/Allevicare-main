@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const riskColor = getRiskColor(risk.level);
                 return `
         <div class="card_flex">
-                    <div class="card_content"><i class="bi bi-exclamation-triangle" style="color: ${riskColor}; margin-left: 0.3rem; margin-right: 1rem;"></i>${risk.name}</div>
+                    <div class="card_content"><p><i class="bi bi-exclamation-triangle" style="color: ${riskColor}; margin-left: 0.3rem; margin-right: 1rem;"></i>${risk.name}</p></div>
                     <div class="question_button btn_click" data-info="${risk.description}. <br> Risknivå: ${risk.level}">
                     <i class="bi bi-question"></i>
             </div>
