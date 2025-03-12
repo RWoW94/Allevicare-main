@@ -184,7 +184,8 @@ document.addEventListener("DOMContentLoaded", function () {
           <option value="0">Nej</option>
         </select>
 
-        <button class="exit button1 btn_click card_mg_block" onclick="createUser()" >Registrera Användare</button>
+        <button type="button" class="exit button1 btn_click card_mg_block" onclick="createUser()">Registrera Användare</button>
+        <button type="button" class="exit button1 btn_click card_mg_block" onclick="createHealthform()">healthform</button>
       </div>
     </div>
     </div>

@@ -1,36 +1,35 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const themeSelect = document.getElementById("theme"); // Hämta dropdown-menyn
+document.addEventListener("DOMContentLoaded", () => {
+    const themeSelect = document.getElementById("theme"); // Get the dropdown menu
     const body = document.body;
-    let mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     let mediaQueryListener = null;
 
-    // Kontrollera lagrat tema
+    // Check for saved theme
     const savedTheme = localStorage.getItem("theme") || "light";
     applyTheme(savedTheme);
 
-    // Sätt rätt valt värde i dropdown-menyn
+    // Set the dropdown to the saved theme
     themeSelect.value = savedTheme;
 
-    // Lyssna på ändringar i dropdown-menyn
-    themeSelect.addEventListener("change", function () {
+    // Listen for changes in the dropdown
+    themeSelect.addEventListener("change", () => {
         const selectedTheme = themeSelect.value;
         localStorage.setItem("theme", selectedTheme);
         applyTheme(selectedTheme);
     });
 
     function applyTheme(theme) {
-        // Ta bort tidigare lyssnare om det finns en
+        // Remove previous listener if it exists
         if (mediaQueryListener) {
             mediaQuery.removeListener(mediaQueryListener);
             mediaQueryListener = null;
         }
 
+        // Apply the selected theme
         if (theme === "dark") {
-            body.classList.add("dark-mode");
-            body.classList.remove("light-mode");
+            setDarkMode();
         } else if (theme === "light") {
-            body.classList.add("light-mode");
-            body.classList.remove("dark-mode");
+            setLightMode();
         } else if (theme === "auto") {
             updateAutoTheme();
             mediaQueryListener = (e) => {
@@ -43,11 +42,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateAutoTheme() {
         if (mediaQuery.matches) {
-            body.classList.add("dark-mode");
-            body.classList.remove("light-mode");
+            setDarkMode();
         } else {
-            body.classList.add("light-mode");
-            body.classList.remove("dark-mode");
+            setLightMode();
         }
+    }
+
+    function setDarkMode() {
+        body.classList.add("dark-mode");
+        body.classList.remove("light-mode");
+    }
+
+    function setLightMode() {
+        body.classList.add("light-mode");
+        body.classList.remove("dark-mode");
     }
 });

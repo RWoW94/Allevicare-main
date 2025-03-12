@@ -118,10 +118,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="question_button btn_click" data-info="Att engagera sig i frivilligorganisationer ger mening och social kontakt. <a href='https://www.volontarbyran.org/bli-volontar' target='_blank'>Läs mer</a>"><i class="bi bi-question"></i></div>
                 </div>
 
-               
-
-                
-
                 <h3>Kontakt</h3>
                 <p>Telefon: 072-123 456 78</p>
                 <p>Email: <a href="mailto:info@example.com">info@example.com</a></p>
@@ -134,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
             card.classList.add('show');
         });
 
-        // Add event listeners to question buttons
+        /* Lägger till en eventlyssnare till frågeknappen */
         const questionButtons = document.querySelectorAll('.question_button');
         questionButtons.forEach(button => {
             button.addEventListener('click', function () {

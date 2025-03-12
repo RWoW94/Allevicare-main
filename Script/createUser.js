@@ -1,4 +1,4 @@
-//Function for changing username and password
+/* Function for changing username and password */
 function createHealthform() {
 
   let labels = document.querySelectorAll(".card_flex label");
@@ -57,6 +57,7 @@ function createUser() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ username, password, firstname, lastname, age, socialnumber, address, zipcode, phone })
+      
     })
     .then(response => response.json())
     .then(data => {

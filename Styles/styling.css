@@ -31,3 +31,11 @@
     height: 100%;
 }
 
+.font_medium {
+    font-size: calc(var(--font_size) * 1.2);
+    font-family: var(--font-family);
+}
+
+.mg_block {
+    margin-block: 0.5rem;
+}

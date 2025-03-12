@@ -128,7 +128,7 @@ function savePassword() {
   });
 }
 
-/*------------------------------------Darkmode Function------------------------------------------ */
+/*------------------------------------Darkmode Functions------------------------------------------ */
 // Function to save and apply selected theme
 function saveColor() {
   const selectedTheme = document.getElementById("theme").value;
@@ -139,7 +139,7 @@ function saveColor() {
 }
 
 // Function to apply the chosen color theme
-function applyColor(theme) {
+ function applyColor(theme) {
   const root = document.documentElement;
   const themeColors = { "light": 1, "dark": 1.6 };
 
@@ -151,7 +151,7 @@ function applyColor(theme) {
   } else {
     console.error("Error: Unknown mode!", theme); // Error message in console 
   }
-}
+} 
 
 // Dark mode-funktionalitet
 function saveSettings() {
@@ -170,7 +170,7 @@ function saveSettings() {
           document.body.classList.remove("dark-mode");
       }
   }
-} 
+}  
 
 
 

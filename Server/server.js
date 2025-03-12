@@ -15,25 +15,25 @@ require("dotenv").config();
 const app = express();
 const port = 3000;
 
-// Middleware
-app.use(express.json()); // Built-in body parsing for JSON
-app.use(express.static(path.join(__dirname, "../Html"))); // Serve HTML files
+/* Middleware */
+app.use(express.json()); 
+app.use(express.static(path.join(__dirname, "../Html"))); 
 app.use("/Styles", express.static(path.join(__dirname, "../Styles")));
 app.use("/img", express.static(path.join(__dirname, "../img")));
 app.use("/Script", express.static(path.join(__dirname, "../Script")));
 app.use("/routes", express.static(path.join(__dirname, "../routes")));
 
 
-// MongoDB Connection
+/* MongoDB Connection */
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log("MongoDB Connection Error:", err));
 
 
-//-------------- user ---------------
+/* -------------- user --------------- */
 
-// POST
+/* POST */
 app.post("/users", async (req, res) => {
   const { username, password, firstname, lastname, age, socialnumber, address, zipcode, phone } = req.body;
 
@@ -52,7 +52,7 @@ app.post("/users", async (req, res) => {
   }
 });
 
-// GET all
+/* GET all */
 app.get("/users", async (req, res) => {
   try {
     const users = await User.find();
@@ -64,7 +64,7 @@ app.get("/users", async (req, res) => {
   }
 });
 
-// GET one
+/* GET one */
 app.get("/users/:username", async (req, res) => {
   const { username } = req.params;
   try {
@@ -112,7 +112,7 @@ app.delete("/users/:username", async (req, res) => {
   }
 });
 
-// PUT
+/* PUT */
 app.put("/users/:username", async (req, res) => {
   const { username } = req.params;
   const { password, name, age, number, address } = req.body; 
@@ -136,9 +136,9 @@ app.put("/users/:username", async (req, res) => {
   }
 });
 
-//-------------- Autentication ---------------
+/* -------------- Autentication --------------- */
 
-// POST
+/* POST */
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -160,9 +160,9 @@ app.post('/login', async (req, res) => {
   }
 });
 
-//-------------- health form ---------------
+/* -------------- health form --------------- */
 
-// GET 
+/* GET */
 app.get("/healthform", async (req, res) => {
   try {
     const healthForms = await HealthForm.find();
@@ -172,7 +172,7 @@ app.get("/healthform", async (req, res) => {
   }
 });
 
-// POST
+/* POST */
 app.post("/healthform", async (req, res) => {
   try {
     const { socialnumber, healthTitle, healthInfo, level } = req.body;
@@ -194,7 +194,7 @@ app.post("/healthform", async (req, res) => {
   }
 });
 
-// DELETE
+/* DELETE */
 app.delete("/healthform/:_id", async (req, res) => {
   const { _id } = req.params;
 
@@ -210,7 +210,7 @@ app.delete("/healthform/:_id", async (req, res) => {
   }
 });
 
-// PUT
+/* PUT */
 app.put("/healthform/:_id", async (req, res) => {
   const { _id} = req.params;
   const { healthInfo, level  } = req.body; 
@@ -232,9 +232,9 @@ app.put("/healthform/:_id", async (req, res) => {
   }
 });
 
-//-------------- health info ---------------
+/* -------------- health info --------------- */
 
-// GET 
+/* GET */ 
 app.get("/healthinfo", async (req, res) => {
   try {
     const healthInfo = await HealthInfo.find();
@@ -244,7 +244,7 @@ app.get("/healthinfo", async (req, res) => {
   }
 });
 
-// POST 
+/* POST */
 app.post("/healthinfo", async (req, res) => {
   try {
     const { socialnumber, description, illness, medication } = req.body;
@@ -262,7 +262,7 @@ app.post("/healthinfo", async (req, res) => {
   }
 });
 
-// PUT
+/* PUT */
 app.put("/healthinfo/:_id", async (req, res) => {
   const { _id} = req.params;
   const { illness, description, medication  } = req.body; 
@@ -285,8 +285,8 @@ app.put("/healthinfo/:_id", async (req, res) => {
   }
 });
 
-// DELETE
-app.delete("/healthinfo/:_id", async (req, res) => {
+/* DELETE */
+ app.delete("/healthinfo/:_id", async (req, res) => {
   const { _id } = req.params;
 
   try {
@@ -301,9 +301,9 @@ app.delete("/healthinfo/:_id", async (req, res) => {
   }
 });
 
-//-------------- reported risks ---------------
+/* -------------- reported risks --------------- */
 
-// GET 
+/* GET */ 
 app.get("/reportedrisk", async (req, res) => {
   try {
     const reportedRisk = await ReportedRisk.find();
@@ -313,7 +313,7 @@ app.get("/reportedrisk", async (req, res) => {
   }
 });
 
-// POST 
+/* POST */
 app.post("/reportedrisk", async (req, res) => {
   try {
     const { socialnumber, name, description, level } = req.body;
@@ -331,7 +331,7 @@ app.post("/reportedrisk", async (req, res) => {
   }
 });
 
-// PUT
+/* PUT */
 app.put("/reportedrisk/:_id", async (req, res) => {
   const { _id } = req.params;
   const { name, description, level} = req.body; 
@@ -354,7 +354,7 @@ app.put("/reportedrisk/:_id", async (req, res) => {
   }
 });
 
-// DELETE
+/* DELETE */
 app.delete("/reportedrisk/:_id", async (req, res) => {
   const { _id } = req.params;
 
@@ -371,16 +371,14 @@ app.delete("/reportedrisk/:_id", async (req, res) => {
 });
 
 
-
-
-// Routes
+/* Routes */
 app.use("/api/auth", authRoutes); 
 
 app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "../Html/Login-page.html"));
 });
 
-app.get("/:username", (req, res) => { //Home
+app.get("/:username", (req, res) => { 
   res.sendFile(path.join(__dirname, "../Html/home.html"));
 });
 
