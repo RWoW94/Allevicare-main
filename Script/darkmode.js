@@ -1,35 +1,53 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const darkModeToggle = document.getElementById("darkModeToggle");
+    const themeSelect = document.getElementById("theme"); // Hämta dropdown-menyn
     const body = document.body;
+    let mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    let mediaQueryListener = null;
 
     // Kontrollera lagrat tema
-    const savedTheme = localStorage.getItem("theme");
+    const savedTheme = localStorage.getItem("theme") || "light";
+    applyTheme(savedTheme);
 
-    if (savedTheme === "dark" || (savedTheme === "auto" && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        body.classList.add("dark-mode");
-    }
+    // Sätt rätt valt värde i dropdown-menyn
+    themeSelect.value = savedTheme;
 
-    // Om "auto" är valt, använd systemets tema
-    if (savedTheme === "auto") {
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        mediaQuery.addListener((e) => {
-            if (e.matches) {
-                body.classList.add("dark-mode");
-            } else {
-                body.classList.remove("dark-mode");
-            }
-        });
-    }
+    // Lyssna på ändringar i dropdown-menyn
+    themeSelect.addEventListener("change", function () {
+        const selectedTheme = themeSelect.value;
+        localStorage.setItem("theme", selectedTheme);
+        applyTheme(selectedTheme);
+    });
 
-    darkModeToggle.addEventListener("click", function () {
-        body.classList.toggle("dark-mode");
-
-        if (body.classList.contains("dark-mode")) {
-            localStorage.setItem("theme", "dark");
-        } else {
-            localStorage.setItem("theme", "light");
+    function applyTheme(theme) {
+        // Ta bort tidigare lyssnare om det finns en
+        if (mediaQueryListener) {
+            mediaQuery.removeListener(mediaQueryListener);
+            mediaQueryListener = null;
         }
 
-        console.log("Dark mode aktiv:", body.classList.contains("dark-mode"));
-    });
+        if (theme === "dark") {
+            body.classList.add("dark-mode");
+            body.classList.remove("light-mode");
+        } else if (theme === "light") {
+            body.classList.add("light-mode");
+            body.classList.remove("dark-mode");
+        } else if (theme === "auto") {
+            updateAutoTheme();
+            mediaQueryListener = (e) => {
+                body.classList.toggle("dark-mode", e.matches);
+                body.classList.toggle("light-mode", !e.matches);
+            };
+            mediaQuery.addListener(mediaQueryListener);
+        }
+    }
+
+    function updateAutoTheme() {
+        if (mediaQuery.matches) {
+            body.classList.add("dark-mode");
+            body.classList.remove("light-mode");
+        } else {
+            body.classList.add("light-mode");
+            body.classList.remove("dark-mode");
+        }
+    }
 });

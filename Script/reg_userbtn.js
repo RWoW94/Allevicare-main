@@ -1,43 +1,43 @@
 document.addEventListener("DOMContentLoaded", function () {
-    document.querySelector(".create_acc").addEventListener("click", function () {
-      const container = document.querySelector(".grid--example");
-      if (!container) return;
+  document.querySelector(".create_acc").addEventListener("click", function () {
+    const container = document.querySelector(".grid--example");
+    if (!container) return;
 
     const settingCard = `<div class="boxspan_1-5_row card card_flex">
     <div class="card_mg_inline card_mg_block" style="width: 100%;"> 
-      <h2>Registrera användare</h2>
-      <div class="card_flex card_flex_col">
-        
-      
-
+    <h2>Registrera användare</h2>
+    <div class="card_flex card_flex_col">
       <input type="text" id="socialnumber" placeholder="Personnummer" class="textfield">
-
       <input type="text" id="firstname" placeholder="Namn" class="textfield">
-
       <input type="text" id="lastname" placeholder="Efternamn" class="textfield">
-
       <input type="text" id="age" placeholder="Ålder" class="textfield">
-
       <input type="text" id="phone" placeholder="Telefonnummer" class="textfield">
-      
       <input type="text" id="address" placeholder="Adress" class="textfield">
-
       <input type="text" id="zipcode" placeholder="Postnummer" class="textfield">
-       
       <input type="text" id="reg_username" placeholder="Användarnamn" class="textfield">
-
       <input type="password" id="reg_password" placeholder="Lösenord" class="textfield">
-
-        <label for="balance" id="title1">Balans:</label>
-        <select class="textfield" id="info1">
-          <option value="5">Ingen balansproblematik</option>
-          <option value="4">Lätt balanssvårighet (känner mig ibland ostadig)</option>
-          <option value="3">Måttlig balanssvårighet (måste ibland hålla i mig för stöd)</option>
-          <option value="2">Svår balanssvårighet (använder rullator eller stöd ofta)</option>
-          <option value="1">Mycket svårt att hålla balansen (använder rullstol eller liknande)</option>
-        </select>
-
-        <label for="mobility">Gångförmåga:</label>
+      <label for="balance" id="title1">Balans:</label>
+      <select class="textfield" id="info1">
+      <option value="5">Ingen balansproblematik</option>
+      <option value="4">Lätt balanssvårighet (känner mig ibland ostadig)</option>
+      <option value="3">Måttlig balanssvårighet (måste ibland hålla i mig för stöd)</option>
+      <option value="2">Svår balanssvårighet (använder rullator eller stöd ofta)</option>
+      <option value="1">Mycket svårt att hålla balansen (använder rullstol eller liknande)</option>
+      </select>
+      <label for="mobility">Gångförmåga:</label>
+      <select id="title2" class="textfield">
+      <option value="5">Går obehindrat</option>
+      <option value="4">Går långsamt men utan hjälp</option>
+      <option value="3">Behöver stöd (kryckor, käpp, möbler, etc.)</option>
+      <option value="2">Använder rullator</option>
+      <option value="1">Använder rullstol</option>
+      </select>
+      <label for="standUp">Kan resa sig från en stol utan stöd?</label>
+      <select id="standUp" class="textfield">
+      <option value="1">Ja</option>
+      <option value="0">Nej</option>
+      </select>
+      <label for="dizzy">Känner du dig ofta yr när du reser dig upp?</label>
         <select id="title2" class="textfield">
           <option value="5">Går obehindrat</option>
           <option value="4">Går långsamt men utan hjälp</option>
@@ -184,11 +184,14 @@ document.addEventListener("DOMContentLoaded", function () {
           <option value="0">Nej</option>
         </select>
 
-        <button class="button1 btn_click card_mg_block" onclick="createUser()">Registrera Användare</button>
+        <button class="exit button1 btn_click card_mg_block" onclick="createUser()" >Registrera Användare</button>
       </div>
     </div>
-    </div>`;
+    </div>
+    <button class="narrowheight box_content_center boxspan_6_row home__button button b_shadow btn_click" onclick="exitCard()">Avbryt</button>`;
       
+/* onclick="createUser()" */
+
     container.insertAdjacentHTML('beforeend', settingCard);
     const card = document.querySelector('.card');
     requestAnimationFrame(() => {
@@ -197,23 +200,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-
-  document.addEventListener("DOMContentLoaded", function () {
-    // Hämta alla knappar med klassen 'button'
-    const buttons = document.querySelectorAll(".exit");
-
-    buttons.forEach(button => {
-        button.addEventListener("click", function () {
-            // Hämta behållaren med class 'grid--example'
-            const container = document.querySelector(".grid--example");
-
-            // Hämta alla div-element i behållaren
-            const divs = container.querySelectorAll("div");
-
-            // Kontrollera att det finns minst 6 element
-            if (divs.length > 3) {
-                container.removeChild(divs[4]); // Ta bort det sjätte elementet
-            }
-        });
-    });
-});
+  function exitCard() {
+    const card = document.querySelector('.card');
+    if (card) {
+      card.remove();
+    }
+    const button = document.querySelector('.home__button');
+    if (button) {
+      button.remove();
+    }
+    // Optionally, you can add code here to navigate back to the login screen
+  }

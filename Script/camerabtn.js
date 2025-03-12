@@ -70,8 +70,13 @@ document.getElementById('cameraButton').addEventListener('click', function() {
     let level = Math.floor(Math.random() * 5) + 1;
     let name = riskArray[randNr].kategori;
     let description = riskArray[randNr].risker[Math.floor(Math.random() * 10)];
-    let socialnumber = "1995254585";
+    let username = window.location.pathname.split("/")[1]
 
+    fetch(`http://localhost:3000/users/${username}`)
+    .then((response) => response.json())
+    .then((userData) => {
+    const {socialnumber} = userData;
+    
     fetch('http://localhost:3000/reportedrisk', {
       method: "POST",
       headers: {
@@ -91,7 +96,6 @@ document.getElementById('cameraButton').addEventListener('click', function() {
       console.error("Error:", error);
     });
 
-  }
-
-
- });
+      });
+    }
+  });
