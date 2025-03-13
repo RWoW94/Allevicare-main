@@ -37,14 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
       <option value="1">Ja</option>
       <option value="0">Nej</option>
       </select>
-      <label for="dizzy">Känner du dig ofta yr när du reser dig upp?</label>
-        <select id="title2" class="textfield">
-          <option value="5">Går obehindrat</option>
-          <option value="4">Går långsamt men utan hjälp</option>
-          <option value="3">Behöver stöd (kryckor, käpp, möbler, etc.)</option>
-          <option value="2">Använder rullator</option>
-          <option value="1">Använder rullstol</option>
-        </select>
 
         <label for="standUp">Kan resa sig från en stol utan stöd?</label>
         <select id="standUp" class="textfield">
@@ -185,7 +177,6 @@ document.addEventListener("DOMContentLoaded", function () {
         </select>
 
         <button type="button" class="exit button1 btn_click card_mg_block" onclick="createUser()">Registrera Användare</button>
-        <button type="button" class="exit button1 btn_click card_mg_block" onclick="createHealthform()">healthform</button>
       </div>
     </div>
     </div>

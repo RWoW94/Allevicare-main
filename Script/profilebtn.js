@@ -13,18 +13,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Skapa innehåll för varje hälsoform
       const content_frame = healthForms.map(form => {
-        if (form.healthInfo === 'Ja' || form.healthInfo === 'Nej') {
-          return  `
-          <div class="card_content_frame">
-            <h3 class="card_mg_inline">${form.healthTitle} ${form.healthInfo}</h3>
+        if (form.healthInfo === 'Ja' || form.healthInfo === 'Nej' || form.healthInfo === 'Osäker') {
+            const color = form.healthInfo === 'Ja' ? 'darkgreen' : form.healthInfo === 'Nej' ? 'darkred' : 'darkorange';
+            return  `
+            <div class="card_content_frame">
+            <h3 class="card_mg_inline">${form.healthTitle} <span style="color: ${color};">${form.healthInfo}</span></h3>
             <div class="card_mg_block card_mg_inline">
             </div>
-          </div>
+            </div>
             `;
         } else{
           return `
         <div class="card_content_frame">
           <h3 class="card_mg_inline">${form.healthTitle} ${form.level}/5</h3>
+          <h4 class="card_mg_inline">${form.healthInfo}</h4>
+          
           <div class="card_mg_block card_mg_inline health-bar">
             <div class="health-bar__fill" style="width: ${form.level * 20}%;"></div>
           </div>

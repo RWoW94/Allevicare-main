@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const themeSelect = document.getElementById("theme"); // Get the dropdown menu
+    /* const themeSelect = document.getElementById("theme"); */ // Get the dropdown menu
     const body = document.body;
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     let mediaQueryListener = null;
@@ -9,14 +9,14 @@ document.addEventListener("DOMContentLoaded", () => {
     applyTheme(savedTheme);
 
     // Set the dropdown to the saved theme
-    themeSelect.value = savedTheme;
+   /*  themeSelect.value = savedTheme; */
 
     // Listen for changes in the dropdown
-    themeSelect.addEventListener("change", () => {
+   /*  themeSelect.addEventListener("change", () => {
         const selectedTheme = themeSelect.value;
         localStorage.setItem("theme", selectedTheme);
         applyTheme(selectedTheme);
-    });
+    }); */
 
     function applyTheme(theme) {
         // Remove previous listener if it exists

@@ -9,7 +9,7 @@ async function fetchUserProfile() {
         const user = await response.json();
 
         if (response.ok) {
-            document.getElementById("profile-name").innerText = user.name;
+            console.log("Användarprofil hämtad");
         } else {
             console.error("Fel vid hämtning av profil:", user.message);
         }

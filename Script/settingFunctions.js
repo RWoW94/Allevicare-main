@@ -1,7 +1,3 @@
-
-  
-
-
   /*---------------------------------Contrast--------------------------------------------- */
 
   // Function for Contrast
@@ -45,9 +41,6 @@ function saveSize() {
 // Funktion to get wanted size
 function applySize(Size) {
   const root = document.documentElement;
-
-  const defaultFontSize = parseFloat(getComputedStyle(root).getPropertyValue('--font_size'));
-
    // Sizes
    const sizeMultipliers = {
     "sizeBig": 1.1,   
@@ -56,9 +49,8 @@ function applySize(Size) {
   };
 
    if (sizeMultipliers[Size] !== undefined) {
-    let newFontSize = defaultFontSize * sizeMultipliers[Size];
 
-    root.style.setProperty("--font_size", newFontSize + "rem");
+    root.style.setProperty("--font_multiplier", sizeMultipliers[Size]);
 } else {
     console.error("Error: Unknown size!", Size);
 }

@@ -1,6 +1,8 @@
 :root{
     /* Adjusts the apps general font-size */
-    --font_size: 0.6rem;
+    --font_multiplier: 1;
+
+    --font_size: calc(0.6rem * var(--font_multiplier));
 
     --font-family: 'Poppins', sans-serif;
 
@@ -10,35 +12,35 @@
 
 @media (min-width: 389px) {
     :root {
-        --font_size: 0.8rem; 
+        --font_size: calc(0.8rem * var(--font_multiplier)); 
         --view_width: 85vw; 
     }
 }
 
 @media (min-width: 400px) and (max-width: 600px) {
     :root {
-        --font_size: 1rem; 
+        --font_size: calc(1rem * var(--font_multiplier)); 
         --view_width: 80vw; 
     }
 }
 
 @media (min-width: 601px) and (max-width: 768px) {
     :root {
-        --font_size: 1.2rem; 
+        --font_size: calc(1.2rem * var(--font_multiplier));
         --view_width: 70vw;
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     :root {
-        --font_size: 1.5rem; 
+        --font_size: calc(1.5rem * var(--font_multiplier)); 
         --view_width: 60vw; 
     }
 }
 
 @media (min-width: 1025px) {
     :root {
-        --font_size: 2rem; 
+        --font_size: calc(2rem * var(--font_multiplier)); 
         --view_width: 50vw; 
     }
 }
