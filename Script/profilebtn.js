@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="boxspan_1-5_row card card_flex">
             <div class="card_mg_inline card_mg_block"> 
               <div class="card_flex card_flex_col_sm">
-                <img class="circle border" src="/img/profile/old_man_1.jpg" alt="" width="30%" height="30%">
+                <img class="circle border" src="/img/profile/old_man_11.png" alt="" width="30%" height="30%">
                 <p>Namn: ${firstname} ${lastname} <br>Personnummer: ${socialnumber}<br>Ålder: ${age} <br>Telefon: ${phone} <br>Adress: ${address} <br>Postnummer: ${zipcode}</p> 
               </div>           
               <h2>Hälsouppgifter</h2>                           

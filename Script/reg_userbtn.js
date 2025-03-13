@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
     </div>
     </div>
-    <button class="narrowheight box_content_center boxspan_6_row home__button button b_shadow btn_click" onclick="exitCard()">Avbryt</button>`;
+    <button class="narrowheight box_content_center boxspan_6_row home__button button b_shadow btn_click" onclick="exitCard()"><i class="bi bi-house"></i></button>`;
       
 /* onclick="createUser()" */
 

@@ -15,7 +15,7 @@ function applyContrast(Contrast) {
   const root = document.documentElement;
   const themeContrast = {
       "high": 0.75,  
-      "medium": 0.85, 
+      "medium": 0.95, 
       "low": 1, 
   };
 
