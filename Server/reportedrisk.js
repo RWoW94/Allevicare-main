@@ -1,5 +1,7 @@
+// Initialize Mongoose
 const mongoose = require("mongoose");
 
+// Define reportedRisk schema
 const reportedRiskSchema = new mongoose.Schema({
   socialnumber: { 
     type: String, ref: "User", 
@@ -12,5 +14,5 @@ const reportedRiskSchema = new mongoose.Schema({
     level: { type: Number, required: true, min: 1, max: 5  },
   }, { versionKey: false });
   
-  
+  // Export the reportedRisk model
   module.exports = mongoose.model("reportedRisk", reportedRiskSchema);

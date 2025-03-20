@@ -33,7 +33,7 @@ mongoose
 
 /* -------------- user --------------- */
 
-/* POST */
+// POST 
 app.post("/users", async (req, res) => {
   const { username, password, firstname, lastname, age, socialnumber, address, zipcode, phone } = req.body;
 
@@ -52,7 +52,7 @@ app.post("/users", async (req, res) => {
   }
 });
 
-/* GET all */
+// GET all
 app.get("/users", async (req, res) => {
   try {
     const users = await User.find();
@@ -64,7 +64,7 @@ app.get("/users", async (req, res) => {
   }
 });
 
-/* GET one */
+// GET one 
 app.get("/users/:username", async (req, res) => {
   const { username } = req.params;
   try {
@@ -112,7 +112,7 @@ app.delete("/users/:username", async (req, res) => {
   }
 });
 
-/* PUT */
+// PUT 
 app.put("/users/:username", async (req, res) => {
   const { username } = req.params;
   const { password, name, age, number, address } = req.body; 
@@ -138,7 +138,7 @@ app.put("/users/:username", async (req, res) => {
 
 /* -------------- Autentication --------------- */
 
-/* POST */
+// POST
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -162,7 +162,7 @@ app.post('/login', async (req, res) => {
 
 /* -------------- health form --------------- */
 
-/* GET */
+// GET 
 app.get("/healthform", async (req, res) => {
   try {
     const healthForms = await HealthForm.find();
@@ -172,7 +172,7 @@ app.get("/healthform", async (req, res) => {
   }
 });
 
-/* POST */
+// POST 
 app.post("/healthform", async (req, res) => {
   try {
     const { socialnumber, healthTitle, healthInfo, level } = req.body;
@@ -194,7 +194,7 @@ app.post("/healthform", async (req, res) => {
   }
 });
 
-/* DELETE */
+// DELETE 
 app.delete("/healthform/:_id", async (req, res) => {
   const { _id } = req.params;
 
@@ -210,7 +210,7 @@ app.delete("/healthform/:_id", async (req, res) => {
   }
 });
 
-/* PUT */
+// PUT
 app.put("/healthform/:_id", async (req, res) => {
   const { _id} = req.params;
   const { healthInfo, level  } = req.body; 
@@ -234,7 +234,7 @@ app.put("/healthform/:_id", async (req, res) => {
 
 /* -------------- health info --------------- */
 
-/* GET */ 
+// GET 
 app.get("/healthinfo", async (req, res) => {
   try {
     const healthInfo = await HealthInfo.find();
@@ -244,7 +244,7 @@ app.get("/healthinfo", async (req, res) => {
   }
 });
 
-/* POST */
+// POST 
 app.post("/healthinfo", async (req, res) => {
   try {
     const { socialnumber, description, illness, medication } = req.body;
@@ -262,7 +262,7 @@ app.post("/healthinfo", async (req, res) => {
   }
 });
 
-/* PUT */
+// PUT 
 app.put("/healthinfo/:_id", async (req, res) => {
   const { _id} = req.params;
   const { illness, description, medication  } = req.body; 
@@ -285,7 +285,7 @@ app.put("/healthinfo/:_id", async (req, res) => {
   }
 });
 
-/* DELETE */
+// DELETE 
  app.delete("/healthinfo/:_id", async (req, res) => {
   const { _id } = req.params;
 
@@ -303,7 +303,7 @@ app.put("/healthinfo/:_id", async (req, res) => {
 
 /* -------------- reported risks --------------- */
 
-/* GET */ 
+// GET 
 app.get("/reportedrisk", async (req, res) => {
   try {
     const reportedRisk = await ReportedRisk.find();
@@ -313,7 +313,7 @@ app.get("/reportedrisk", async (req, res) => {
   }
 });
 
-/* POST */
+// POST
 app.post("/reportedrisk", async (req, res) => {
   try {
     const { socialnumber, name, description, level } = req.body;
@@ -331,7 +331,7 @@ app.post("/reportedrisk", async (req, res) => {
   }
 });
 
-/* PUT */
+// PUT
 app.put("/reportedrisk/:_id", async (req, res) => {
   const { _id } = req.params;
   const { name, description, level} = req.body; 
@@ -354,7 +354,7 @@ app.put("/reportedrisk/:_id", async (req, res) => {
   }
 });
 
-/* DELETE */
+// DELETE
 app.delete("/reportedrisk/:_id", async (req, res) => {
   const { _id } = req.params;
 

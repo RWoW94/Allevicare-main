@@ -1,3 +1,4 @@
+// Description: This script is used to fetch the user data from the API and display the user's reported risks in a card.
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".warning_button").addEventListener("click", function () {
         const container = document.querySelector(".grid--example");
@@ -17,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Full API-respons:", userData);
         console.log("Reported risks:", reportedRisk);
         
+    // Create the card content
         const content_frame = reportedRisk.map(risk => {
         const riskColor = getRiskColor(risk.level);
                 return `
@@ -28,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
      `}).join('');
 
+     // Create the card
         const warningCard = `
         <div class="boxspan_1-5_row card">
             <div class="card_mg_inline card_mg_block">

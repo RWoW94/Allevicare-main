@@ -1,4 +1,4 @@
-/* Function for changing username and password */
+// Purpose: Create a new user and healthform in the database
 function createHealthform() {
 
   let labels = document.querySelectorAll(".card_flex label");
@@ -38,6 +38,7 @@ function createHealthform() {
 }
 }
 
+// Purpose: Create a new user in the database
 function createUser() {
     const username = document.getElementById("reg_username").value;
     const password = document.getElementById("reg_password").value;

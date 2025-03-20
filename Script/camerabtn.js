@@ -1,3 +1,4 @@
+// Description: This script is used to generate random risks for a user and send them to the database.
 const riskArray = [
   {
     kategori: "Höga trösklar",
@@ -61,10 +62,11 @@ const riskArray = [
   }
 ];
 
-
+// Event listener for the camera button
 document.getElementById('cameraButton').addEventListener('click', function() {
   let randomNumber = Math.floor(Math.random() * 7) + 1;
 
+  // Loop through the random number and generate a random risk
   for (let i = 0; i < randomNumber; i++) {
     let randNr = Math.floor(Math.random() * 4);
     let level = Math.floor(Math.random() * 5) + 1;
@@ -72,11 +74,13 @@ document.getElementById('cameraButton').addEventListener('click', function() {
     let description = riskArray[randNr].risker[Math.floor(Math.random() * 10)];
     let username = window.location.pathname.split("/")[1]
 
+   
     fetch(`http://localhost:3000/users/${username}`)
     .then((response) => response.json())
     .then((userData) => {
     const {socialnumber} = userData;
     
+   
     fetch('http://localhost:3000/reportedrisk', {
       method: "POST",
       headers: {

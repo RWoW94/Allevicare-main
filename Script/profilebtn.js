@@ -1,17 +1,19 @@
+// Description: This script is used to fetch the user profile data from the server and display it on the profile page.
+// Purpose: Fetch user profile from server and display it on the profile page
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelector(".profile__button").addEventListener("click", function () {
     const container = document.querySelector(".grid--example");
     if (!container) return;
+    
+    const username = window.location.pathname.split("/")[1]
 
-    const username = window.location.pathname.split("/")[1]// Hämtar användarnamnet från URL
-
-    // Hämta användarens profilinformation från servern
+    
     fetch(`http://localhost:3000/users/${username}`)
       .then((response) => response.json())
       .then((userData) => {
       const { firstname, lastname, age, socialnumber, address, zipcode, phone, healthForms, healthInfo } = userData;
 
-      // Skapa innehåll för varje hälsoform
+      // Create the card content
       const content_frame = healthForms.map(form => {
         if (form.healthInfo === 'Ja' || form.healthInfo === 'Nej' || form.healthInfo === 'Osäker') {
             const color = form.healthInfo === 'Ja' ? 'darkgreen' : form.healthInfo === 'Nej' ? 'darkred' : 'darkorange';
@@ -36,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }).join('');
 
-      // Skapa innehåll för varje hälsoform
+     // Create the card content
       const content_frame_info = healthInfo.map(info => `
         <div class="card_content_frame">
         <h3 class="card_mg_inline">Beskrivning: ${info.description}</h3>
@@ -45,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
       `).join('');
 
-        // Skapa profilkortet med användarens information
+       // Create the card
         const profileCard = `
           <div class="boxspan_1-5_row card card_flex">
             <div class="card_mg_inline card_mg_block"> 
@@ -57,15 +59,16 @@ document.addEventListener("DOMContentLoaded", function () {
               <div class="card_grid card_pad_block">   
               ${content_frame}
 
-              <h2>Övring information</h2>  
+              <h2>Övrig information</h2>  
               ${content_frame_info}
               </div>            
             </div>
           </div>`;
 
-        // Lägg till kortet i container
+        
         container.insertAdjacentHTML('beforeend', profileCard);
 
+        // Show the card
         const card = document.querySelector('.card');
         requestAnimationFrame(() => {
           card.classList.add('show');

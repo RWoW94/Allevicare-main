@@ -1,5 +1,4 @@
 .container{
-  /* width: var(--view_width); */
   height: 100vh;
 }
 
@@ -94,7 +93,6 @@
     grid-column: 1 / span 3;
     grid-row: 1;
 }
-
 
 .boxspan_1-5_row{ 
     grid-column: 1 / span 3;

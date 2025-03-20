@@ -1,29 +1,32 @@
-    function getUserLocation() {
-    if (!("geolocation" in navigator)) {
-        document.getElementById("weather-info").innerText = "Din webbläsare stöder inte geolokalisering.";
-        return;
+// Description: This script fetches weather data from the SMHI API and displays it on the website.
+// Purpose: Fetch weather data from the SMHI API and display it on the website.
+function getUserLocation() {
+if (!("geolocation" in navigator)) {
+    document.getElementById("weather-info").innerText = "Din webbläsare stöder inte geolokalisering.";
+    return;
+}
+// Get user's current location
+navigator.geolocation.getCurrentPosition(
+    (position) => {
+        let latitude = position.coords.latitude.toFixed(4);
+        let longitude = position.coords.longitude.toFixed(4);
+        console.log(`Lat: ${latitude}, Lon: ${longitude}`);
+
+        getWeatherFromSMHI(latitude, longitude);
+    },
+    (error) => {
+        console.error("Fel vid hämtning av plats:", error.message);
+        document.getElementById("weather-info").innerText = "Kunde inte hämta plats: " + error.message;
+    },
+    {
+        enableHighAccuracy: true,
+        timeout: 15000,
+        maximumAge: 0,
     }
-
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-            let latitude = position.coords.latitude.toFixed(4);
-            let longitude = position.coords.longitude.toFixed(4);
-            console.log(`Lat: ${latitude}, Lon: ${longitude}`);
-
-            getWeatherFromSMHI(latitude, longitude);
-        },
-        (error) => {
-            console.error("Fel vid hämtning av plats:", error.message);
-            document.getElementById("weather-info").innerText = "Kunde inte hämta plats: " + error.message;
-        },
-        {
-            enableHighAccuracy: true,
-            timeout: 15000,
-            maximumAge: 0,
-        }
-    );
+);
 }
 
+// Get weather data from SMHI API
 function getWeatherFromSMHI(lat, lon) {
     let smhiUrl = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${lon}/lat/${lat}/data.json`;
 
@@ -43,16 +46,16 @@ function getWeatherFromSMHI(lat, lon) {
                 throw new Error("Ingen väderdata hittades för denna plats.");
             }
 
-            let forecast = data.timeSeries[0]; // Hämtar första prognosen (aktuell tid)
+            let forecast = data.timeSeries[0]; 
 
-            // Hämta temperatur, nederbördssort och molnighet
-            let temperature = getParameterValue(forecast, "t"); // Temperatur (°C)
-            let precipitationTypeCode = getParameterValue(forecast, "pcat"); // Nederbördssort (kod)
-            let precipitationType = mapPrecipitationType(precipitationTypeCode); // Konvertera kod till text
-            let cloudinessCode = getParameterValue(forecast, "tcc_mean"); // Molnighet (0-8)
-            let cloudinessDescription = mapCloudiness(cloudinessCode); // Konvertera molnighet till beskrivning
+           /// Get weather parameters
+            let temperature = getParameterValue(forecast, "t"); 
+            let precipitationTypeCode = getParameterValue(forecast, "pcat"); 
+            let precipitationType = mapPrecipitationType(precipitationTypeCode); 
+            let cloudinessCode = getParameterValue(forecast, "tcc_mean"); 
+            let cloudinessDescription = mapCloudiness(cloudinessCode); 
 
-            // Uppdatera HTML-innehållet med Bootstrap-ikoner
+           
             document.getElementById("weather-info").innerHTML = `
                 <p><i class="bi bi-thermometer-half"></i> Temperatur: <strong>${temperature}°C</strong> 
                 <br> <i class="bi ${getPrecipitationIcon(precipitationTypeCode)}"> </i> Nederbörd: <strong>${precipitationType}</strong> 
@@ -65,16 +68,16 @@ function getWeatherFromSMHI(lat, lon) {
         });
 }
 
-// Hjälpfunktion för att hitta rätt parameter i SMHI:s data
+// Get parameter value from forecast data
 function getParameterValue(forecast, parameterName) {
     let parameter = forecast.parameters.find(p => p.name === parameterName);
     return parameter ? parameter.values[0] : "N/A";
 }
 
-// Hjälpfunktion för att konvertera nederbördssort-kod till beskrivning
+// Map precipitation type code to description
 function mapPrecipitationType(code) {
     const types = {
-        0: "Ingen nederbörd",
+        0: "Ingen nederbörd", 
         1: "Snö",
         2: "Snöblandat regn",
         3: "Regn",
@@ -85,7 +88,7 @@ function mapPrecipitationType(code) {
     return types[code] || "Okänd nederbörd";
 }
 
-// Hjälpfunktion för att konvertera molnighet (0-8) till beskrivning
+// Map cloudiness code to description
 function mapCloudiness(value) {
     if (value == 0) return "Klar himmel";
     if (value >= 1 && value <= 2) return "Lätt molnighet";
@@ -95,31 +98,31 @@ function mapCloudiness(value) {
     return "Okänd molnighet";
 }
 
-// Hjälpfunktion för att välja Bootstrap-ikon för nederbörd
+// Get precipitation icon based on type code
 function getPrecipitationIcon(code) {
     const icons = {
-        0: "bi-brightness-high",  // Ingen nederbörd (solig)
-        1: "bi-snow",             // Snö
-        2: "bi-cloud-snow",       // Snöblandat regn
-        3: "bi-cloud-rain-heavy", // Regn
-        4: "bi-cloud-drizzle",    // Duggregn
-        5: "bi-cloud-rain",       // Underkylt regn
-        6: "bi-cloud-drizzle"     // Underkylt duggregn
+        0: "bi-brightness-high",  
+        1: "bi-snow",             
+        2: "bi-cloud-snow",       
+        3: "bi-cloud-rain-heavy", 
+        4: "bi-cloud-drizzle",    
+        5: "bi-cloud-rain",       
+        6: "bi-cloud-drizzle"     
     };
-    return icons[code] || "bi-question-circle"; // Standardikon vid okänd nederbörd
+    return icons[code] || "bi-question-circle"; 
 }
 
-// Hjälpfunktion för att välja Bootstrap-ikon för molnighet
+// Get cloudiness icon based on value
 function getCloudinessIcon(value) {
-    if (value == 0) return "bi-brightness-high";   // Klar himmel
-    if (value >= 1 && value <= 2) return "bi-cloud-sun";  // Lätt molnighet
-    if (value >= 3 && value <= 5) return "bi-cloud";      // Halvklart
-    if (value >= 6 && value <= 7) return "bi-cloudy";     // Mulet
-    if (value == 8) return "bi-cloud-fill";              // Helt mulet
-    return "bi-question-circle"; // Okänd ikon
+    if (value == 0) return "bi-brightness-high";   
+    if (value >= 1 && value <= 2) return "bi-cloud-sun";  
+    if (value >= 3 && value <= 5) return "bi-cloud";      
+    if (value >= 6 && value <= 7) return "bi-cloudy";     
+    if (value == 8) return "bi-cloud-fill";              
+    return "bi-question-circle"; 
 }
 
-// Kör funktionen när sidan laddas
+
 getUserLocation();
 
     

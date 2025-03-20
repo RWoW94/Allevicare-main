@@ -1,9 +1,11 @@
+// Description: Script for information button in the grid example.
+// Purpose: To display information about smart home technology and other relevant topics.
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".info_button").addEventListener("click", function () {
         const container = document.querySelector(".grid--example");
         if (!container) return;
         
-
+        // Information card
         const informationCard = `
         <div class="boxspan_1-5_row card">
             <div class="card_mg_inline card_mg_block">
@@ -124,13 +126,14 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         </div>`;
         
+        // Insert information card
         container.insertAdjacentHTML('beforeend', informationCard);
         const card = document.querySelector('.card');
         requestAnimationFrame(() => {
             card.classList.add('show');
         });
 
-        /* Lägger till en eventlyssnare till frågeknappen */
+        // Event listener for the close button
         const questionButtons = document.querySelectorAll('.question_button');
         questionButtons.forEach(button => {
             button.addEventListener('click', function () {

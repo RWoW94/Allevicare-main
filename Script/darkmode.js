@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Update the theme based on the media query
     function updateAutoTheme() {
         if (mediaQuery.matches) {
             setDarkMode();
@@ -48,11 +49,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Set the dark mode
     function setDarkMode() {
         body.classList.add("dark-mode");
         body.classList.remove("light-mode");
     }
 
+    // Set the light mode
     function setLightMode() {
         body.classList.add("light-mode");
         body.classList.remove("dark-mode");

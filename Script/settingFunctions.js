@@ -1,6 +1,6 @@
   /*---------------------------------Contrast--------------------------------------------- */
 
-  // Function for Contrast
+// Save the selected contrast in localStorage  
 function saveContrast() {
   const selectedContrast = document.getElementById("Contrast").value;
   localStorage.setItem("selectedContrast", selectedContrast);  // Save in localStorage
@@ -10,9 +10,11 @@ function saveContrast() {
   applyContrast(selectedContrast);  // Uppdatera temat direkt
 }
 
-// Funktion to get wanted contrast
+// Apply the selected contrast
 function applyContrast(Contrast) {
   const root = document.documentElement;
+
+  // Define the contrast values
   const themeContrast = {
       "high": 0.75,  
       "medium": 0.95, 
@@ -22,34 +24,32 @@ function applyContrast(Contrast) {
   if (themeContrast[Contrast] !== undefined) {
       root.style.setProperty("--lum", themeContrast[Contrast]);
   } else {
-      console.error("Error: Unknown contrast!", Contrast); // error message in console 
+      console.error("Error: Unknown contrast!", Contrast); 
   }
 }
 
  /*----------------------------------Font size-------------------------------------------- */
 
-// Function for Size
+// Save the selected size in localStorage
 function saveSize() {
   const selectedSize = document.getElementById("Size").value;
-  localStorage.setItem("selectedSize", selectedSize);  // Save in localStorage
-  
+  localStorage.setItem("selectedSize", selectedSize);    
   console.log("Settings saved! Size selected:", selectedSize); 
-
   applySize(selectedSize);  
 }
 
-// Funktion to get wanted size
+// Apply the selected size
 function applySize(Size) {
   const root = document.documentElement;
-   // Sizes
+   
+  // Define the size multipliers
    const sizeMultipliers = {
-    "sizeBig": 1.1,   
-    "sizeMedium": 1.05, 
+    "sizeBig": 1.25,   
+    "sizeMedium": 1.15, 
     "sizeSmall": 1 
   };
 
    if (sizeMultipliers[Size] !== undefined) {
-
     root.style.setProperty("--font_multiplier", sizeMultipliers[Size]);
 } else {
     console.error("Error: Unknown size!", Size);
@@ -58,7 +58,7 @@ function applySize(Size) {
 
  /*------------------------------------Username And password------------------------------------------ */
 
-//Function for changing username and password
+// Save the username in the database
 function saveUsername() {
   const newUsername = document.getElementById("username").value.trim();
   const currentUsername = window.location.pathname.split('/').pop();
@@ -68,7 +68,7 @@ function saveUsername() {
   }
 
   console.log("Extracted current username:", currentUsername);
-
+  
   fetch(`/users/${currentUsername}`, {
     method: "PUT",
     headers: {
@@ -90,6 +90,7 @@ function saveUsername() {
   });
 }
 
+// Save the password in the database
 function savePassword() {
   const newPassword = document.getElementById("password").value.trim();
   const currentUsername = window.location.pathname.split('/').pop();
@@ -121,35 +122,38 @@ function savePassword() {
 }
 
 /*------------------------------------Darkmode Functions------------------------------------------ */
-// Function to save and apply selected theme
+
+// Save the selected theme in localStorage
 function saveColor() {
   const selectedTheme = document.getElementById("theme").value;
-  localStorage.setItem("selectedTheme", selectedTheme);  // Save in localStorage
+  localStorage.setItem("selectedTheme", selectedTheme);  
 
-  console.log("Settings saved! Them selected:", selectedTheme); // message in console
-  applyColor(selectedTheme);  // Apply the selected theme
+  console.log("Settings saved! Them selected:", selectedTheme); 
+  applyColor(selectedTheme);  
 }
 
-// Function to apply the chosen color theme
+// Apply the selected theme
  function applyColor(theme) {
   const root = document.documentElement;
   const themeColors = { "light": 1, "dark": 1.6 };
 
+  // Apply the selected theme
   if (theme === "auto") {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     root.style.setProperty("--lum", mediaQuery.matches ? themeColors["dark"] : themeColors["light"]);
   } else if (themeColors[theme]) {
     root.style.setProperty("--lum", themeColors[theme]);
   } else {
-    console.error("Error: Unknown mode!", theme); // Error message in console 
+    console.error("Error: Unknown mode!", theme); 
   }
 } 
 
-// Dark mode-funktionalitet
+// Save the selected theme in localStorage
 function saveSettings() {
   const selectedTheme = document.getElementById("theme").value;
   localStorage.setItem("theme", selectedTheme);
 
+  // Apply the selected theme
   if (selectedTheme === "dark") {
       document.body.classList.add("dark-mode");
   } else if (selectedTheme === "light") {

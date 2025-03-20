@@ -1,8 +1,11 @@
+// Description: This script is used to create a new user account. The user will be able to fill in their personal information and health status. The information will be stored in the database and used to create a user profile.
+// Purpose: Create a new user account and store the information in the database
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelector(".create_acc").addEventListener("click", function () {
     const container = document.querySelector(".grid--example");
     if (!container) return;
 
+    // Create the card
     const settingCard = `<div class="boxspan_1-5_row card card_flex">
     <div class="card_mg_inline card_mg_block" style="width: 100%;"> 
     <h2>Registrera användare</h2>
@@ -182,8 +185,8 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
     <button class="narrowheight box_content_center boxspan_6_row home__button button b_shadow btn_click" onclick="exitCard()"><i class="bi bi-house"></i></button>`;
       
-/* onclick="createUser()" */
 
+    // Insert the card into the container
     container.insertAdjacentHTML('beforeend', settingCard);
     const card = document.querySelector('.card');
     requestAnimationFrame(() => {
@@ -191,7 +194,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     });
   });
-
+  
+  // Purpose: Create a new user in the database
   function exitCard() {
     const card = document.querySelector('.card');
     if (card) {
@@ -201,5 +205,4 @@ document.addEventListener("DOMContentLoaded", function () {
     if (button) {
       button.remove();
     }
-    // Optionally, you can add code here to navigate back to the login screen
   }

@@ -1,3 +1,4 @@
+// Description: This script is used to remove the card from the grid when the button is clicked.
 document.addEventListener("DOMContentLoaded", function () {
     const buttons = document.querySelectorAll(".button");
 

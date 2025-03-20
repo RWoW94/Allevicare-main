@@ -1,8 +1,11 @@
+// Purpose: To create a setting button that will display a card with settings for the user to change.
+// Description: This script is used to create a setting button that will display a card with settings for the user to change.
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelector(".setting__button").addEventListener("click", function () {
       const container = document.querySelector(".grid--example");
       if (!container) return;
-
+    
+      // Create the card
       const settingCard = `<div class="boxspan_1-5_row card card_flex">
           <div class="card_mg_inline card_mg_block" style="width: 100%;"> 
               <h2>Inställningar</h2>
@@ -47,13 +50,14 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
       </div>`;
         
+      // Insert the card into the grid
       container.insertAdjacentHTML('beforeend', settingCard);
       const card = document.querySelector('.card');
       requestAnimationFrame(() => {
           card.classList.add('show');
       });
 
-       // Sätt dropdown till sparat tema
+      // Set the saved theme
       const themeSelect = document.getElementById("theme");
       const savedTheme = localStorage.getItem("theme") || "light";
       themeSelect.value = savedTheme;

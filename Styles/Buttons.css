@@ -47,13 +47,16 @@
     background-color: hsl(var(--hue--3), var(--sat--3), var(--lum--3));
 }
 
-.question_button{
+.question_button {
     border: 0.2rem solid hsl(var(--hue--3), var(--sat--3), var(--lum--3));
-    border-radius: 0.5rem;   
+    border-radius: 0.5rem;
     width: 15%;
-    font-size:calc(var(--font_size) * 2);
+    font-size: calc(var(--font_size) * 2);
     text-align: center;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn_bg::before{

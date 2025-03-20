@@ -2,23 +2,23 @@
      /* theme */
     --hue--1: var(--color); /* Button-Background */
     --sat--1: 13%; /* Button-Background */
-    --lum--1: calc(85% / var(--lum)); /* 85%; /* Button-Background */
+    --lum--1: calc(85% / var(--lum)); /* Button-Background */
 
     --hue--2: var(--color); /* Text */
     --sat--2: 22%; /* Text */
-    --lum--2: calc(54% * var(--lum)); /*54%; /* Text */
+    --lum--2: calc(54% * var(--lum)); /* Text */
 
     --hue--3: var(--color); /* Border */
     --sat--3: 22%; /* Border */
-    --lum--3: calc(54% * var(--lum)); /* 54%; /* Border */
+    --lum--3: calc(54% * var(--lum)); /* Border */
 
     --hue--4: var(--color); /* light bg-area */
     --sat--4: 22%; /* light bg-area */
-    --lum--4: calc(90% / var(--lum)); /* 90%; /* 90%; /* light bg-area */
+    --lum--4: calc(90% / var(--lum)); /* light bg-area */
 
     --hue--5: var(--color); /* dark bg-area */
     --sat--5: 22%; /* dark bg-area */
-    --lum--5: 35%; /* 10%; /* dark bg-area */
+    --lum--5: 35%; /* dark bg-area */
     
    
       /* default color blue */
@@ -27,18 +27,18 @@
 
       /* default luminance low */
       --lum: 1;
-      /* --lumDark: 1; */
 
+        /* Darkmode settings */
       .dark-mode {      
-        --lum: 0.4; /* Lägre ljusstyrka */
+        --lum: 0.4; /* Light */
     
         --hue--4: var(--color);
         --sat--4: 15%;
-        --lum--4: 15%; /* Mörk bakgrund */
+        --lum--4: 15%; /* Dark */
     
         --hue--5: var(--color);
         --sat--5: 12%;
-        --lum--5: 5%; /* Extra mörkt för sektioner */
+        --lum--5: 5%; /* Extra dark */
     }
   
 }
