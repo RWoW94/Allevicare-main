@@ -8,16 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem("theme") || "light";
     applyTheme(savedTheme);
 
-    // Set the dropdown to the saved theme
-   /*  themeSelect.value = savedTheme; */
-
-    // Listen for changes in the dropdown
-   /*  themeSelect.addEventListener("change", () => {
-        const selectedTheme = themeSelect.value;
-        localStorage.setItem("theme", selectedTheme);
-        applyTheme(selectedTheme);
-    }); */
-
     function applyTheme(theme) {
         // Remove previous listener if it exists
         if (mediaQueryListener) {
